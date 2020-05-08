@@ -46,6 +46,7 @@
   // add an event listener for a click on the search link
   btnHandler("#search-link", function(){
 
+    // start of scripts from his site
     // attach a click handler to the search link
     var btn = document.querySelector('#search-link');
     btn.addEventListener('click', function (event) {
@@ -57,8 +58,26 @@
 
     }, false);
 
+    // get the data
+    const searchIndex;
+    fetch('/search.json').then(function (response) {
+      return response.json();
+    }).then(function (response) {
+      searchIndex = response.search;
+    });
 
+    // look for matches in each item in the JSON
+    var results = [];
+    for (var item in searchIndex) {
+      var found = searchIndex[item].text.indexOf(searchString);
+      if (found != -1) {
+        results.push(searchIndex[item])
+      }
+    }
 
+// now display the items in our results array...
+// end of scripts from his site
+    
     // get the data
     fetch('/search.json').then(function(response) {
       return response.json();
