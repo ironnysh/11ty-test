@@ -13,7 +13,7 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addFilter("squash", require("./src/_filters/squash.js"));
     eleventyConfig.addFilter("hebrewDate", (dateObj) => {
         const options = { weekday: "long", year: "numeric", month: "long", day: "2-digit" };
-        return new Date(dateObj).toLocaleDateString("de-DE", options);
+        return new Date(dateObj).toLocaleDateString("he-IL", options);
     });
     
     // Layouts

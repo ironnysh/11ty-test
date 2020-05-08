@@ -9,6 +9,7 @@ permalink: "/"
     <article>
     <h2>{{ thought.data.title }}</h2>
             {{ thought.templateContent | safe }}
+<mark>Posted on {{ thought.data.date | hebrewDate }}</mark>
 <details>
 <summary>מידע נוסף</summary>
 <p>
@@ -18,13 +19,6 @@ permalink: "/"
 
 עוד מחשבות על {%- for tag in tags -%} {%- if tag != "thoughts" -%}<a href="/thoughts/tags/{{ tag }}/"> {{ tag }} </a> •  
 {% endif %}{% endfor %}
-
-
-  {% for tag in tags %}
-    {% set tagUrl %}/tags/{{ tag }}/{% endset %}
-    <li><a href="/thoughts/tags/{{ tag }}/">{{ tag.lenght }}</a>dddd</li>
-  {% endfor %}
-
 
 </p>
 </details>
