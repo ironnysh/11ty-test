@@ -15,8 +15,7 @@ permalink: "/"
 <p>
 עוד מחשבות על {%- for tag in thought.data.tags -%}<a href="/thoughts/tags/{{ tag }}/"> {{ tag }} </a>•{% endfor %}
 <time>פורסם ב-{{ thought.data.date | hebrewDate }}</time>
-
-
+<br>
 עוד מחשבות על {%- for tag in tags -%} {%- if tag != "thoughts" -%}<a href="/thoughts/tags/{{ tag }}/"> {{ tag }} </a> •  
 {% endif %}{% endfor %}
 
