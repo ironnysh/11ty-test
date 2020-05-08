@@ -1,0 +1,10 @@
+    <nav>
+      <ul>
+       {%- for item in collections.all | eleventyNavigation -%}
+       {%- set isCurrent = (item.url == page.url) -%}
+        <li class="nav-item{% if isCurrent %}-current{% endif %}">
+            <a href="{{ item.url | url }}">{{ item.title }}</a></li>
+        {%- endfor -%}
+        <a href="/search" class="search" id="search-link"> חיפוש</a>
+      </ul>
+    </nav>

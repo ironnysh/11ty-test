@@ -1,0 +1,20 @@
+---
+layout: "base"
+---
+{% block thoughtContent %}
+<article dir="auto">
+    <h2>{{ title }}</h2>
+            {{- content | safe -}}
+    <details>
+    <summary>מידע נוסף</summary>
+    <p>
+    עוד מחשבות על {%- for tag in tags -%} {%- if tag != "thoughts" -%}<a href="/thoughts/tags/{{ tag }}/"> {{ tag }} </a> •  
+     {% endif %}{% endfor %} 
+    <time>פורסם ב-{{ page.date | hebrewDate }}</time>
+    </p>
+    </details>
+    </article>
+{% endblock thoughtContent %}
+    <section>
+    <a href="{{ '/thoughts/' | url }}"><h6>למחשבות נוספות</h6></a>
+    </section>

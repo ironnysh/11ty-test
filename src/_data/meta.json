@@ -1,0 +1,17 @@
+{
+    "title": "Air-Freelance",
+    "description": "מאת לירון מילשטיין",
+    "url": "https://air-freelance.com",
+    "feedUrl": "https://air-freelance.com/feed.xml",
+    "lang": "he-IL",
+    "locale": "he-IL",
+    "author": {
+        "name": "לירון מילשטיין",
+        "email": "liron@air-freelance.com"
+    },
+    "social": {
+       "twitter": "https://twitter.com/lironmilstein",
+       "facebook": "https://www.facebook.com/liron.milstein.5",
+       "flickr": "https://www.flickr.com/photos/lironmil"
+    }
+}
