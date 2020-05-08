@@ -46,6 +46,19 @@
   // add an event listener for a click on the search link
   btnHandler("#search-link", function(){
 
+    // attach a click handler to the search link
+    var btn = document.querySelector('#search-link');
+    btn.addEventListener('click', function (event) {
+
+      // don't navigate to that page. Stay put.
+      event.preventDefault();
+
+      // make search magic happen instead...
+
+    }, false);
+
+
+
     // get the data
     fetch('/search.json').then(function(response) {
       return response.json();
