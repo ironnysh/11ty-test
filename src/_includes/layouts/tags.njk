@@ -12,6 +12,9 @@ pagination:
 permalink: "thoughts/tags/{{ tag }}/"
 layout: "base"
 ---
+Tags: {{ tags }}
+{{ content | safe }}
+    </div>
 
 <h2>{{ title }} {{ tag }}</h2>
 {% set tags = collections[ tag ] %}

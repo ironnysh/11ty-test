@@ -1,6 +1,6 @@
 ---
 layout: "base"
-title: "Air Freelance"
+title: "Home Air Freelance"
 description: "פוסטים וכתבות מאת לירון מילשטיין"
 permalink: "/"
 ---
