@@ -15,9 +15,6 @@ module.exports = function (eleventyConfig) {
         const options = { weekday: "long", year: "numeric", month: "long", day: "2-digit" };
         return new Date(dateObj).toLocaleDateString("he-IL", options);
     });
-    eleventyConfig.addFilter("readableDate", dateObj => {
-  return DateTime.fromJSDate(dateObj).toLocaleString(DateTime."he-IL");
-});
 
     // Layouts
     eleventyConfig.addLayoutAlias("layouts/base", "base.njk")
