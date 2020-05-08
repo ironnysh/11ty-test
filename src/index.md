@@ -17,15 +17,16 @@ permalink: "/"
 עוד מחשבות על {%- for tag in thought.data.tags -%}<a href="/thoughts/tags/{{ tag }}/"> {{ tag }} </a>•{% endfor %}
 <time>פורסם ב-{{ thought.data.date | hebrewDate }}</time>
 
+<section>
+  {%- if isFront %}
+    <p>This paragraph is only written to the front page.</p>
+  {% endif %}
+  <p>This paragraph is rendered on all pages.</p>
+</section>
 
 עוד מחשבות על {%- for tag in tags -%} {%- if tag != "thoughts" -%}<a href="/thoughts/tags/{{ tag }}/"> {{ tag }} </a> •  
 {% endif %}{% endfor %}
 
-
-{% for tag in tags %}
-{% set tagUrl %}/tags/{{ tag }}/{% endset %}
-<li><a href="/thoughts/tags/{{ tag }}/">{{ tag.lenght }}</a>dddd</li>
-{% endfor %}
 
 </p>
 </details>
