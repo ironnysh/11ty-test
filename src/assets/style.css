@@ -115,7 +115,7 @@ p cite {
 time { font-size: small; }
 
 .links {
-  border-bottom: 1px solid #999;
+  border-bottom: 1px solid #888;
   margin: 2em 0;
 }
 
@@ -125,7 +125,7 @@ figure { margin: 1em 0; }
 figcaption {
   font-size: small;
   margin: 0;
-  border-bottom: 1px solid #c7c7c7;
+  border-bottom: 1px solid #888;
   padding: 0.5em;
   text-align: end;
 }
@@ -192,9 +192,11 @@ nav ul li {
 
 nav ul li:first-child { padding-left: 0; }
 
-.nav-item-current a { border-bottom: 1px solid olivedrab; }
+.nav-item-current a { border-bottom: 1px solid orangered; }
 
 nav ul li a:active { border-bottom: 1px solid orangered; }
+
+nav ol > li{ display: list-item; }
 
 /* Copy inline */
 a { text-decoration: none; }
@@ -234,34 +236,24 @@ details[open] summary { margin-bottom: 10px; }
 
 /* Search */
 
-.search-ui {
-  font-size:1.4em;
-  margin:0 0 2em 0;
-  padding: 0.5em 1em;
-  border-radius: 3px;
-  background-color: rgba(255,255,255,0.05);
-}
-  .search-ui span {
-    display: block;
-  }
-  .search-ui a {
-    color: #fff;
-  }
+.search { padding-inline-start: 1ch; }
 
-
-.invisible {
-  display: none;
+.search-str {
+background: none;
+border: none;
+border-bottom: 1px solid #888;
+font-size: inherit;
+outline: none;
+font: inherit;
+color: #888;
 }
 
-.search-ui {
-  margin: 1em -1em;
-  padding-top: 1em;
-}
+.invisible { display: none; }
+
 .search-results {
   font-size: 0.8em;
-}
-
-pre {
-  overflow: auto;
+  text-align: center;
+  background: white;
+  width: fit-content;
 }
 

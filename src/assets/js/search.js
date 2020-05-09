@@ -1,133 +1,65 @@
-'use strict';
-/**
- * @param {string} buttonId
- * @param {!Function} listener
- * @return {undefined}
- */
+// Based on Phil Hawksworth's script
+
 function btnHandler(buttonId, listener) {
-    /** @type {(Element|null)} */
-    var buttonEl = document.querySelector(buttonId);
-    if (buttonEl) {
-        buttonEl.addEventListener("click", function (event) {
+    var button = document.querySelector(buttonId);
+    if (button) {
+        button.addEventListener("click", function (event) {
             event.preventDefault();
             listener();
         }, false);
     }
 }
-/**
- * @param {!Object} e
- * @return {undefined}
- */
-function flagIfEmpty(e) {
-    if (e.value.length < 1) {
-        e.classList.add("needs-content");
-    }
-}
-btnHandler("#btn-opt-in", function () {
-    /** @type {!Date} */
-    var date = new Date;
-    /** @type {number} */
-    var end = date.getTime() + 31536e6;
-    date.setTime(end);
-    /** @type {string} */
-    document.cookie = "nf_ab=oh-so-orange; expires=" + date.toUTCString();
-    window.location.reload(true);
-}), btnHandler("#btn-opt-out", function () {
-    /** @type {string} */
-    document.cookie = "nf_ab=;expires=Thu, 01 Jan 1970 00:00:01 GMT;";
-    window.location.reload(true);
-}), function () {
-    /** @type {!NodeList<Element>} */
-    var input = document.querySelectorAll("form");
-    if (0 != input.length) {
-        /** @type {number} */
-        var i = 0;
-        for (; i < input.length; i++) {
-            input[i].addEventListener("submit", function (event) {
-                event.preventDefault();
-                /** @type {(EventTarget|null)} */
-                var form = event.target;
-                var elements = form.querySelectorAll(".needs-content");
-                /** @type {number} */
-                var i = 0;
-                for (; i < elements.length; i++) {
-                    elements[i].classList.remove("needs-content");
-                }
-                var crossfilterable_layers = form.querySelectorAll("input");
-                /** @type {number} */
-                var layer_i = 0;
-                for (; layer_i < crossfilterable_layers.length; layer_i++) {
-                    flagIfEmpty(crossfilterable_layers[layer_i]);
-                }
-                var spheres = form.querySelectorAll("textarea");
-                /** @type {number} */
-                var iter_sph = 0;
-                for (; iter_sph < spheres.length; iter_sph++) {
-                    flagIfEmpty(spheres[iter_sph]);
-                }
-                if (1 < (elements = form.querySelectorAll(".needs-content")).length) {
-                    return false;
-                }
-                form.submit();
-            }, false);
+(function () {
+    var searchIndex = null;
+    var searchUI = document.querySelector(".search-ui");
+    var resultsUI = document.querySelector(".search-results");
+    var searchInput = document.querySelector("#search-str");
+    // clear the current results
+    var clearResults = function () {
+         while (resultsUI.firstChild) {
+             resultsUI.removeChild(resultsUI.firstChild);
         }
-    }
-}(), function () {
-    /** @type {null} */
-    var x = null;
-    /** @type {(Element|null)} */
-    var targettedRow = document.querySelector(".search-ui");
-    /** @type {(Element|null)} */
-    var audioSelect = document.querySelector(".search-results");
-    /** @type {(Element|null)} */
-    var element = document.querySelector("#search-str");
-    /** @type {(Element|null)} */
-    var footer = document.querySelector("footer");
-    /**
-     * @return {undefined}
-     */
-    var show = function () {
-        for (; audioSelect.firstChild;) {
-            audioSelect.removeChild(audioSelect.firstChild);
-        }
-        footer.classList.remove("invisible");
     };
-    btnHandler("#search-link", function () {
-        fetch("/search.json").then(function (rawResp) {
-            return rawResp.json();
-        }).then(function (ic) {
-            x = ic.search;
+    // search and display
+    var find = function (str) {
+         str = str.toLowerCase();
+    // look for matches in search JSON
+     var results = [];
+     for (var item in searchIndex) {
+         var found = searchIndex[item].text.indexOf(str);
+         if (found != -1) {
+         results.push(searchIndex[item]);
+             }
+         }
+    // build and insert the new result entries
+    clearResults();
+     for (var item in results) {
+         var listItem = document.createElement("li");
+         var link = document.createElement("a");
+             link.textContent = results[item].title;
+             link.setAttribute("href", results[item].url);
+             listItem.appendChild(link);
+             resultsUI.appendChild(listItem);
+         }
+    };
+    // add an event listener for a click on the search link
+     btnHandler("#search-link", function () {
+    // get the data
+        fetch("/search.json").then(function (response) {
+            return response.json();
+        }).then(function (response) {
+            searchIndex = response.search;
         });
-        targettedRow.classList.toggle("invisible");
-        element.focus();
-        element.addEventListener("keyup", function (canCreateDiscussions) {
-            var password = element.value;
-            if (2 < password.length) {
-                (function (key) {
-                    key = key.toLowerCase();
-                    /** @type {!Array} */
-                    var c = [];
-                    var i;
-                    for (i in x) {
-                        if (-1 != x[i].text.indexOf(key)) {
-                            c.push(x[i]);
-                        }
-                    }
-                    for (i in show(), footer.classList.add("invisible"), c) {
-                        /** @type {!Element} */
-                        var option = document.createElement("li");
-                        /** @type {!Element} */
-                        var o = document.createElement("a");
-                        o.textContent = c[i].title;
-                        o.setAttribute("href", c[i].url);
-                        option.appendChild(o);
-                        audioSelect.appendChild(option);
-                    }
-                })(password);
-            } else {
-                show();
+        searchUI.classList.toggle("invisible");
+        searchInput.focus();
+    // listen for input changes
+    searchInput.addEventListener("keyup", function (event) {
+        var str = searchInput.value;
+        if (str.length > 1) {
+            find(str);
+        } else {
+            clearResults();
             }
         });
     });
-}();
-
+})();

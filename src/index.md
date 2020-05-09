@@ -24,7 +24,10 @@ permalink: "/"
   <p>This paragraph is rendered on all pages.</p>
 </section>
 
-עוד מחשבות על {%- for tag in tags -%} {%- if tag != "thoughts" -%}<a href="/thoughts/tags/{{ tag }}/"> {{ tag }} </a> •  
+    עוד מחשבות על {%- for tag in thought.data.tags -%} {%- if tag != "thoughts" -%}{% set tagUrl %}/thoughts/tags/{{ tag }}/{% endset %}<a href="{{ tagUrl | url }}" rel="tag">{{ tag }}</a>
+     {% endif %}{% endfor %} 
+
+בדיקת תגים {%- for tag in tags -%} {%- if tag != "thoughts" -%}<a href="/thoughts/tags/{{ tag }}/"> {{ tag }} </a> •  
 {% endif %}{% endfor %}
 
 

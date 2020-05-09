@@ -5,3 +5,4 @@ _site
 *.code-workspace
 src/assets/js/search-new.js
 src/assets/js/search-new.js
+page-from-data.json

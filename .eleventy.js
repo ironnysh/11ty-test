@@ -12,7 +12,7 @@ module.exports = function (eleventyConfig) {
     // Add filters to Nunjucks
     eleventyConfig.addFilter("squash", require("./src/_filters/squash.js"));
     eleventyConfig.addFilter("hebrewDate", (dateObj) => {
-        const options = { weekday: "long", year: "numeric", month: "long", day: "2-digit" };
+        const options = { year: "numeric", month: "long", day: "2-digit" };
         return new Date(dateObj).toLocaleDateString("he-IL", options);
     });
 
