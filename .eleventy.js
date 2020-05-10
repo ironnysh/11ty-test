@@ -9,7 +9,13 @@ module.exports = function (eleventyConfig) {
 
     eleventyConfig.setDataDeepMerge(true);
 
-    // Add filters to Nunjucks
+    // Collection
+    // Filter source file names using a glob
+  eleventyConfig.addCollection("thoughts", function(collection) {
+    return collection.getFilteredByGlob("./src/thoughts/*.md");
+  });
+    
+    // Filters
     eleventyConfig.addFilter("squash", require("./src/_filters/squash.js"));
     eleventyConfig.addFilter("hebrewDate", (dateObj) => {
         const options = { year: "numeric", month: "long", day: "2-digit" };

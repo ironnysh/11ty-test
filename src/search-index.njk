@@ -2,7 +2,7 @@
 permalink: /search.json
 ---
 {"search" : [
-{%- for thought in collections.thoughts -%}
+{%- for thought in collections.thoughts | reverse -%}
   {
     "url" : "{{ thought.url }}",
     "title" : "{{ thought.data.title }}",

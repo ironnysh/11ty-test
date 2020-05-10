@@ -1,0 +1,20 @@
+{
+    "slugs": [
+        {
+            "tagName": "אדריכלות",
+            "tagSlug": "architecture"
+        },
+        {
+            "tagName": "עיצוב",
+            "tagSlug": "design"
+        },
+        {
+            "tagName": "נסיעות",
+            "tagSlug": "travel"
+        },
+        {
+            "tagName": "ברלין",
+            "tagSlug": "berlin"
+        }
+    ]
+}

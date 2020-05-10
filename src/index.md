@@ -1,7 +1,6 @@
 ---
 layout: "base"
-isFront: "true"
-title: "Home Air Freelance"
+title: "Air Freelance"
 description: "פוסטים וכתבות מאת לירון מילשטיין"
 permalink: "/"
 ---
@@ -14,23 +13,8 @@ permalink: "/"
 <details>
 <summary>מידע נוסף</summary>
 <p>
-עוד מחשבות על {%- for tag in thought.data.tags -%}<a href="/thoughts/tags/{{ tag }}/"> {{ tag }} </a>•{% endfor %}
+עוד מחשבות על {%- for tag in thought.data.tags -%} {%- if tag != "thoughts" -%}{% set tagUrl %}/thoughts/tags/{{ tag }}/{% endset %}<a href="{{ tagUrl | url }}"> {{ tag }} </a>•{% endif %}{% endfor %}
 <time>פורסם ב-{{ thought.data.date | hebrewDate }}</time>
-
-<section>
-  {%- if isFront %}
-    <p>This paragraph is only written to the front page.</p>
-  {% endif %}
-  <p>This paragraph is rendered on all pages.</p>
-</section>
-
-    עוד מחשבות על {%- for tag in thought.data.tags -%} {%- if tag != "thoughts" -%}{% set tagUrl %}/thoughts/tags/{{ tag }}/{% endset %}<a href="{{ tagUrl | url }}" rel="tag">{{ tag }}</a>
-     {% endif %}{% endfor %} 
-
-בדיקת תגים {%- for tag in tags -%} {%- if tag != "thoughts" -%}<a href="/thoughts/tags/{{ tag }}/"> {{ tag }} </a> •  
-{% endif %}{% endfor %}
-
-
 </p>
 </details>
     </article>
