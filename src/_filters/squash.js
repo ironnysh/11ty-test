@@ -14,7 +14,7 @@ module.exports = function (text) {
   var deduped = [...(new Set(words))];
   var dedupedStr = deduped.join(' ')
   // remove short and less meaningful words
-  var result = dedupedStr.replace(/\b(\.|\,|the|a|an|and|for)\b/gi, '');
+  var result = dedupedStr.replace(/\b(\.|\,|a|an)\b/gi, '');
   //remove newlines, and punctuation
   result = result.replace(/\.|\,|\?|-|\n/g, '');
   //remove repeated spaces

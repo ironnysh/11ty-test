@@ -10,7 +10,6 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.setDataDeepMerge(true);
 
     // Collection
-    // Filter source file names using a glob
   eleventyConfig.addCollection("thoughts", function(collection) {
     return collection.getFilteredByGlob("./src/thoughts/*.md");
   });
