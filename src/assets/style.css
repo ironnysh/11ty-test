@@ -171,7 +171,7 @@ li ul > li { list-style-type: circle; }
 
 li li ul > li { list-style-type: square; }
 
-ol > li { list-style-type: decimal; }
+ol > li { list-style-type: decimal-leading-zero; }
 
 li ol > li { list-style-type: lower-roman; }
 
@@ -190,13 +190,16 @@ nav ul li {
   white-space: nowrap;
 }
 
-nav ul li:first-child { padding-left: 0; }
+nav ul li:first-child { padding-inline-start: 0; }
 
 .nav-item-current a { border-bottom: 1px solid orangered; }
 
 nav ul li a:active { border-bottom: 1px solid orangered; }
 
-nav ol > li{ display: list-item; }
+nav ol > li{
+  display: list-item;
+  padding-inline-start: 0;
+}
 
 /* Copy inline */
 a { text-decoration: none; }
@@ -246,14 +249,16 @@ font-size: inherit;
 outline: none;
 font: inherit;
 color: #888;
+width: 20%;
 }
 
 .invisible { display: none; }
 
 .search-results {
-  font-size: 0.8em;
-  text-align: center;
-  background: white;
-  width: fit-content;
+  display: inline-grid;
+  font-size: 0.9em;
+  text-align: start;
+  margin-inline-start: 0.5em;
 }
+
 
