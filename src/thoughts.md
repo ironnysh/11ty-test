@@ -10,6 +10,10 @@ eleventyNavigation:
 {%- for thought in collections.thoughts | reverse -%}
 <section>
   <a href="{{ thought.url }}"><h5>{{ thought.data.title }}</h5></a>
-  <time>{{ thought.date.toLocaleDateString('he-IL') }}</time>
+  <time>{{ thought.date.toLocaleDateString('he-IL') }}</time><br>
+  <time>{{ thought.date | hebrewDate }}</time><br>
+<time datetime="{{ thought.date }}">{{ thought.date | displayDate }}</time><br>
+<time datetime="{{ thought.date }}">{{ thought.date | hebrewDate }}</time>
+
 </section>
 {%- endfor -%}
