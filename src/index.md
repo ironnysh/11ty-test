@@ -4,6 +4,7 @@ title: "Air Freelance"
 description: "פוסטים וכתבות מאת לירון מילשטיין"
 permalink: "/"
 ---
+<h1>test</h1>
 {%- for thought in thoughts.collections -%}
   <article>
     <h2>{{ thought.data.title }}</h2>
