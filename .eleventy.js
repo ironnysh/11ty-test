@@ -1,6 +1,6 @@
 const pluginRss = require("@11ty/eleventy-plugin-rss")
 const pluginNavigation = require("@11ty/eleventy-navigation")
-const parseTransform = require("./src/assets/js/figcaption.js");
+const contentParser = require("./src/assets/js/contentParser.js");
 
 module.exports = function (eleventyConfig) {
   // Plugins
@@ -16,6 +16,8 @@ module.exports = function (eleventyConfig) {
 
   // Filters
   eleventyConfig.addFilter("squash", require("./src/_filters/squash.js"));
+  eleventyConfig.addFilter("hebrewDate", require("./src/_filters/hebrewDate.js"));
+
   eleventyConfig.addFilter('displayDate', function (date) {
     return new Date(date).toLocaleDateString('he-IL', {
       month: 'long',
@@ -34,8 +36,8 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addLayoutAlias("layouts/links", "links.njk")
   eleventyConfig.addLayoutAlias("layouts/thoughts", "thoughts.njk")
 
-  // Figcaption
-  eleventyConfig.addTransform("parse", parseTransform);
+  // contentParser
+  eleventyConfig.addTransform("contentParser", contentParser);
 
   // Pass-through Files
   eleventyConfig.addPassthroughCopy("src/assets")
