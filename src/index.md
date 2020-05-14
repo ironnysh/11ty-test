@@ -4,8 +4,7 @@ title: "Air Freelance"
 description: "פוסטים וכתבות מאת לירון מילשטיין"
 permalink: "/"
 ---
-{%- set latestThought = collections.thoughts | reverse -%}
-{%- for thought in latestThought.slice(0,1) -%}
+{%- for thought in thoughts.collections -%}
   <article>
     <h2>{{ thought.data.title }}</h2>
         {{ thought.templateContent | safe }}
