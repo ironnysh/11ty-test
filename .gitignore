@@ -2,7 +2,6 @@
 .DS_Store
 node_modules
 _site
-*.code-workspace
-src/assets/js/search-new.js
-src/assets/js/search-new.js
-page-from-data.json
+tagslug.njk
+tags.njk
+feed.njk

@@ -9,9 +9,8 @@ eleventyNavigation:
 ---
 {%- for link in collections.links | reverse -%}
 <article class="links">
-    <a href="{{ link.data.url }}"><h4>↜ {{ link.data.title }}</h4></a>
-    {{ link.templateContent | safe }}
+  <a href="{{ link.data.url }}"><h4>↜ {{ link.data.title }}</h4></a>
+  {{ link.templateContent | safe }}
 </article>
-{%- endfor %}
-
+{% endfor %}
 [דווחו]({{ '/about/' | url }}) אם מצאתם לינק שבור.

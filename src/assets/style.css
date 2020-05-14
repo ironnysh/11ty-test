@@ -49,9 +49,9 @@ body { color: #333; background: #f8f1eb; }
 a, header nav a:visited { color: orangered; }
 a:visited { color: #69b7ff; }
 .logo, .logo a { color: olivedrab; }
-code, pre, samp, thead, tfoot { background-color: #f0efed; }
+thead, tfoot { background-color: #f0efed; }
 mark { color: inherit; background-color: #fcc7d8; }
-main aside, blockquote, ins { border: solid rgb(201 204 194 / 0.26); }
+main aside, blockquote { border: solid rgb(201 204 194 / 0.26); }
 th, td { border: solid #dbdbdb; }
 
 /* Layout */
@@ -134,7 +134,7 @@ img { max-width: 100%; }
 
 header img { opacity: 60%; }
 
-video {
+video, audio {
   max-width: 100%;
   height: auto;
 }
@@ -156,14 +156,18 @@ video {
   width: 220px;
 }
 
+.two-photos figure {
+  flex: 0 0 auto;
+  margin-inline-end: 0.5em;
+  width: 295px;
+}
+
 .infinity img { border-radius: 5px; }
 
 .infinity::-webkit-scrollbar { display: none; }
 
 /* Lists */
-ul, ol, dd { padding: 0 3ch 0 0; }
-
-dd { margin: 0; }
+ul, ol { padding: 0 3ch 0 0; }
 
 ul > li { list-style-type: disc; }
 
@@ -203,11 +207,6 @@ nav ol > li{
 
 /* Copy inline */
 a { text-decoration: none; }
-
-sup, sub {
-  line-height: 1em;
-  font-size: 0.75em;
-}
 
 mark { padding: 1px; }
 
@@ -260,5 +259,3 @@ width: 20%;
   text-align: start;
   margin-inline-start: 0.5em;
 }
-
-
