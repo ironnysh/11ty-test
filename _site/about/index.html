@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he-IL"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/assets/style.css" media="print" onload="this.media='all'">
+  <title>Air-Freelance | על אודות</title>
+  <meta name="description" content="מי זו לירון מילשטיין">
+  <link rel="icon" href="/assets/images/favicon.png" type="image/png">
+  <link rel="alternate" href="https://air-freelance.com/feed.xml" title="Air-Freelance" type="application/atom+xml">
+</head>
+<body>
+        <header>
+    <section class="logo">
+        <a href="/">
+            <h1>Air-Freelance</h1>
+            <h4>מאת לירון מילשטיין</h4>
+        </a>
+    </section>
+      <nav>
+  <ul><li class="nav-item-current">
+      <a href="/about/">אני</a></li>
+    <li class="nav-item">
+      <a href="/thoughts/">מחשבות</a></li>
+    <li class="nav-item">
+      <a href="/links/">בקטנה</a></li>
+    
+      <a class="search" id="search-link" href="/search">🔍</a>
+        <span class="search-ui invisible">
+          <input type="text" id="search-str" class="search-str" placeholder="הקלידי לחיפוש">
+            <ol class="search-results"></ol>
+        </span>
+  </ul>
+</nav>
+</header>
+    <main>
+            <article>
+    <h2>על אודות</h2><p>ביוני 2012 חלה תפנית מסעירה בחיי: לראשונה הפסקתי להיות עובדת שכירה ויצאתי לעצמאות ככתבת ומתרגמת פרילאנס. כידוע, או שלא כידוע, להיות כתב בישראל זו משימה לא קלה במונחים של פרנסה, אבל, לפחות לאף אחד לא אכפת היכן אני נמצאת.</p>
+<p>המטרה - להפוך את החסרונות ליתרונות: וכך, החל מיומי הראשון כעוסקת מורשה, התחלתי לנסוע ולנצל כמיטב יכולתי את ויזת התייר האירופית. עד כה, נסעתי כפרילנס לטייל, וקצת לחיות בניקוסיה, ברלין, בריסל, אנטוורפן, מדריד, פריז, בלגרד, פירנצה, ורשה, ליסבון ועוד. גם בעברי הספקתי קצת לטייל, (כשהבוס אישר לי חופשה קצרה) ביפן, וינה, קופנהגן ובזל. למסעותיי בעולם נלווית אלי תמיד זוגתי שתחיה (עכשיו כשליאיר אין יותר טור, מישהו צריך להמשיך את המסורת), ומאז אוקטובר 2012 - גם שולי, הכלבה שמלווה אותי כבר ארבע שנים ומשהו.</p>
+<p>השילוב בין שהות ארוכה (יחסית לתייר ממוצע) במקומות חדשים, המסע עם שולי, ותעודת העיתונאי שתמיד מוכנה בארנק, יצרו במוחי בלגן שלם של עודף מידע, שהבנתי שיכול להיות שימושי. בין אם אתם עיתונאים בחופשה, יוצאים לטיול ולא רוצים להשאיר את הכלב בבית, או פשוט נוסעים למקום חדש ולא רוצים להרגיש כמו אחרוני התיירים - הבלוג הזה הוא בשבילכם.</p>
+<p>רוצים ליצור איתי קשר? מוזמנים לעשות זאת בכמה דרכים:</p>
+<ul>
+<li><a title="שלחו לי מייל" href="mailto:liron@air-freelance.com">מייל</a></li>
+<li><a title="טוויטר" href="https://twitter.com/lironmilstein" rel="external noopener noreferrer" target="_blank">טוויטר</a></li>
+<li><a title="פייסבוק" href="https://www.facebook.com/liron.milstein.5" rel="external noopener noreferrer" target="_blank">פייסבוק</a></li>
+<li><a title="פליקר" href="https://www.flickr.com/photos/lironmil" rel="external noopener noreferrer" target="_blank">פליקר</a></li>
+<li><a title="עדכוני RSS" href="https://air-freelance.com/feed.xml" rel="external noopener noreferrer" target="_blank">RSS</a></li>
+</ul>
+<p>תהנו.</p>
+</article>
+    </main>
+        <footer>
+        <p>© כל הזכויות שמורות לנצח ללירון מילשטיין.</p>
+</footer>
+    <script>// Based on Phil Hawksworth's script
+
+function btnHandler(buttonId, listener) {
+    var button = document.querySelector(buttonId);
+    if (button) {
+        button.addEventListener("click", function (event) {
+            event.preventDefault();
+            listener();
+        }, false);
+    }
+}
+(function () {
+    var searchIndex = null;
+    var searchUI = document.querySelector(".search-ui");
+    var resultsUI = document.querySelector(".search-results");
+    var searchInput = document.querySelector("#search-str");
+    // clear the current results
+    var clearResults = function () {
+        while (resultsUI.firstChild) {
+            resultsUI.removeChild(resultsUI.firstChild);
+        }
+    };
+    // search and display
+    var find = function (str) {
+        str = str.toLowerCase();
+        // look for matches in search JSON
+        var results = [];
+        for (var item in searchIndex) {
+            var found = searchIndex[item].text.indexOf(str);
+            if (found != -1) {
+                results.push(searchIndex[item]);
+            }
+        }
+        // build and insert the new result entries
+        clearResults();
+        for (var item in results) {
+            var listItem = document.createElement("li");
+            var link = document.createElement("a");
+            link.textContent = results[item].title;
+            link.setAttribute("href", results[item].url);
+            listItem.appendChild(link);
+            resultsUI.appendChild(listItem);
+        }
+    };
+    // add an event listener for a click on the search link
+    btnHandler("#search-link", function () {
+        // get the data
+        fetch("/search.json").then(function (response) {
+            return response.json();
+        }).then(function (response) {
+            searchIndex = response.search;
+        });
+        searchUI.classList.toggle("invisible");
+        searchInput.focus();
+        // listen for input changes
+        searchInput.addEventListener("keyup", function (event) {
+            var str = searchInput.value;
+            if (str.length > 1) {
+                find(str);
+            } else {
+                clearResults();
+            }
+        });
+    });
+})();</script>
+
+</body></html>

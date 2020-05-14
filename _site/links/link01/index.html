@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he-IL"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/assets/style.css" media="print" onload="this.media='all'">
+  <title>Air-Freelance | לינק לאתר מעניין</title>
+  <meta name="description" content="טקסט לתיאור">
+  <link rel="icon" href="/assets/images/favicon.png" type="image/png">
+  <link rel="alternate" href="https://air-freelance.com/feed.xml" title="Air-Freelance" type="application/atom+xml">
+</head>
+<body>
+        <header>
+    <section class="logo">
+        <a href="/">
+            <h1>Air-Freelance</h1>
+            <h4>מאת לירון מילשטיין</h4>
+        </a>
+    </section>
+      <nav>
+  <ul><li class="nav-item">
+      <a href="/about/">אני</a></li>
+    <li class="nav-item">
+      <a href="/thoughts/">מחשבות</a></li>
+    <li class="nav-item">
+      <a href="/links/">בקטנה</a></li>
+    
+      <a class="search" id="search-link" href="/search">🔍</a>
+        <span class="search-ui invisible">
+          <input type="text" id="search-str" class="search-str" placeholder="הקלידי לחיפוש">
+            <ol class="search-results"></ol>
+        </span>
+  </ul>
+</nav>
+</header>
+    <main>
+            <article>
+    <a href="http://www.guardian.com" rel="external noopener noreferrer" target="_blank"><h2>↜ לינק לאתר מעניין</h2></a>
+       <p>עיתונאי אחד כתב משהו מעניין.</p>
+<p>חובבי אדריכלות מודרנית ודאי לא יסמנו לעצמם ברשימת היעדים את בזל, שוויץ. העיר אמנם מתהדרת במוזיאון Fondation Beyeler, שתוכנן על ידי רנצו פיאנו, אבל ברובה מאופיינת במבנים מהמאות ה-13-19. עם זאת, במרחק נסיעה של רבע שעה באוטובוס יתגלה לפניכם פלא אדריכלי, ששווה לעלות בשבילו על אחת מהטיסות היומיות של EasyJet לבזל: <a href="https://www.vitra.com/en-us/campus" rel="external noopener noreferrer" target="_blank">הקמפוס של ויטרה</a>.</p>
+<blockquote>
+<p>את חברת עיצוב הרהיטים ויטרה כמעט שאין צורך להציג: לאורך השנים היא ייצרה ומכרה עיצובים אייקונים ופופולריים של צ׳רלס וריי אימס, ורנר פנטון, ג׳ורג׳ נלסון, ג׳ספר מוריסון, מרטין ואן סברן, רון ארד ועוד רבים וטובים, אבל בעשורים האחרונים מנסה החברה לספק השראה תרבותית רחבה יותר, גם בהיבט האדריכלי.</p>
+</blockquote>
+<p><cite>— <time>שועתק ב-2020-04-25</time> | מקור:  <a href="http://www.guardian.com" rel="external noopener noreferrer" target="_blank">Guardian</a></cite></p>
+
+</article>
+    </main>
+        <footer>
+        <p>© כל הזכויות שמורות לנצח ללירון מילשטיין.</p>
+</footer>
+    <script>// Based on Phil Hawksworth's script
+
+function btnHandler(buttonId, listener) {
+    var button = document.querySelector(buttonId);
+    if (button) {
+        button.addEventListener("click", function (event) {
+            event.preventDefault();
+            listener();
+        }, false);
+    }
+}
+(function () {
+    var searchIndex = null;
+    var searchUI = document.querySelector(".search-ui");
+    var resultsUI = document.querySelector(".search-results");
+    var searchInput = document.querySelector("#search-str");
+    // clear the current results
+    var clearResults = function () {
+        while (resultsUI.firstChild) {
+            resultsUI.removeChild(resultsUI.firstChild);
+        }
+    };
+    // search and display
+    var find = function (str) {
+        str = str.toLowerCase();
+        // look for matches in search JSON
+        var results = [];
+        for (var item in searchIndex) {
+            var found = searchIndex[item].text.indexOf(str);
+            if (found != -1) {
+                results.push(searchIndex[item]);
+            }
+        }
+        // build and insert the new result entries
+        clearResults();
+        for (var item in results) {
+            var listItem = document.createElement("li");
+            var link = document.createElement("a");
+            link.textContent = results[item].title;
+            link.setAttribute("href", results[item].url);
+            listItem.appendChild(link);
+            resultsUI.appendChild(listItem);
+        }
+    };
+    // add an event listener for a click on the search link
+    btnHandler("#search-link", function () {
+        // get the data
+        fetch("/search.json").then(function (response) {
+            return response.json();
+        }).then(function (response) {
+            searchIndex = response.search;
+        });
+        searchUI.classList.toggle("invisible");
+        searchInput.focus();
+        // listen for input changes
+        searchInput.addEventListener("keyup", function (event) {
+            var str = searchInput.value;
+            if (str.length > 1) {
+                find(str);
+            } else {
+                clearResults();
+            }
+        });
+    });
+})();</script>
+
+</body></html>
