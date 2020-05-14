@@ -4,13 +4,14 @@ layout: "base"
 {% block thoughtContent %}
 <article dir="auto">
     <h2>{{ title }}</h2>
-            {{- content | safe -}}
+          {{ content | safe }}
     <details>
     <summary>מידע נוסף</summary>
     <p>
     עוד מחשבות על {%- for tag in tags -%} {%- if tag != "thoughts" -%}<a href="/thoughts/tags/{{ tag }}/"> {{ tag }} </a> •  
      {% endif %}{% endfor %} 
-    <time>פורסם ב-{{ page.date | hebrewDate }}</time>
+    <time>{{ page.date | hebrewDate }}</time>
+    <time datetime="{{ page.date }}">{{ page.date | displayDate }}</time>
     </p>
     </details>
     </article>

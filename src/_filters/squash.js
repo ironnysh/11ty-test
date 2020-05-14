@@ -1,7 +1,3 @@
-/**
- * Make a search index string by removing duplicated words and more
- * @param {String} text
- */
 module.exports = function (text) {
   var content = new String(text);
   // all lower case, please
