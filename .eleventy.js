@@ -1,6 +1,8 @@
 const pluginRss = require("@11ty/eleventy-plugin-rss")
 const pluginNavigation = require("@11ty/eleventy-navigation")
 const contentParser = require("./src/assets/js/contentParser.js");
+const hebrewDate = require("./src/_filters/hebrewDate.js")
+
 
 module.exports = function (eleventyConfig) {
   // Plugins
@@ -16,7 +18,7 @@ module.exports = function (eleventyConfig) {
 
   // Filters
   eleventyConfig.addFilter("squash", require("./src/_filters/squash.js"));
-  eleventyConfig.addFilter("hebrewDate", require("./src/_filters/hebrewDate.js"));
+  eleventyConfig.addFilter('hebrewDate', hebrewDate);
 
   eleventyConfig.addFilter('displayDate', function (date) {
     return new Date(date).toLocaleDateString('he-IL', {
@@ -25,7 +27,7 @@ module.exports = function (eleventyConfig) {
     })
   })
 
-  eleventyConfig.addFilter("hebrewDate", (dateObj) => {
+  eleventyConfig.addFilter("oldHebrewDate", (dateObj) => {
     const options = { year: "numeric", month: "long" };
     return new Date(dateObj).toLocaleDateString("he-IL", options);
   });

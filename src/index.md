@@ -13,7 +13,7 @@ permalink: "/"
 <summary>מידע נוסף</summary>
 <p>
 עוד מחשבות על {%- for tag in thought.data.tags -%} {%- if tag != "thoughts" -%}{% set tagUrl %}/thoughts/tags/{{ tag }}/{% endset %}<a href="{{ tagUrl | url }}"> {{ tag }} </a>•{% endif %}{% endfor %}
-<time>{{ thought.date | hebrewDate }}</time>
+<time>{{ thought.date | oldHebrewDate }}</time>
 <time datetime="{{ thought.date }}">{{ thought.date | displayDate }}</time>
 <time datetime="{{ thought.date }}">{{ thought.date | hebrewDate }}</time>
 </p>
