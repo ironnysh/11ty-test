@@ -4,14 +4,22 @@
   "description": "",
   "main": ".eleventy.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "npx del _site",
+    "prestart": "npm run clean",
+    "prebuild": "npm run clean",
+    "serve": "npx eleventy --serve",
+    "start": "npm run serve",
+    "build": "npx eleventy",
+    "debug": "DEBUG=* npx eleventy"
+
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ironnysh/11ty-test.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Ronny Shani",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ironnysh/11ty-test/issues"
@@ -23,6 +31,7 @@
     "@11ty/eleventy-plugin-rss": "^1.0.7"
   },
   "dependencies": {
+    "del-cli": "^3.0.0",
     "jsdom": "^16.2.2"
   }
 }
