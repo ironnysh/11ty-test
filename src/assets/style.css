@@ -253,9 +253,18 @@ width: 20%;
 
 .invisible { display: none; }
 
+.show { box-shadow: -2px 5px 5px -2px rgba(0,0,0,0.1); }
+
 .search-results {
-  display: inline-grid;
-  font-size: 0.9em;
+/*  display: inline-grid;
   text-align: start;
   margin-inline-start: 0.5em;
+*/
+  font-size: 0.9em;
+  display: block;
+  background: #f8f1eb;
+  padding: 0.5em 4em;
+  position: absolute;
+  margin: 0 13.7em 0 0;
+  border-radius: 7px;
 }

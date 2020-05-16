@@ -1,5 +1,4 @@
 // Based on Phil Hawksworth's script
-
 function btnHandler(buttonId, listener) {
     var button = document.querySelector(buttonId);
     if (button) {
@@ -29,6 +28,7 @@ function btnHandler(buttonId, listener) {
             var found = searchIndex[item].text.indexOf(str);
             if (found != -1) {
                 results.push(searchIndex[item]);
+                resultsUI.classList.add("show");
             }
         }
         // build and insert the new result entries
@@ -59,6 +59,8 @@ function btnHandler(buttonId, listener) {
                 find(str);
             } else {
                 clearResults();
+                resultsUI.classList.remove("show");
+
             }
         });
     });
