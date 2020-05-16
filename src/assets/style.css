@@ -268,3 +268,9 @@ width: 20%;
   margin: 0 13.7em 0 0;
   border-radius: 7px;
 }
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .search-results {
+    margin: 0;
+  }
+}
