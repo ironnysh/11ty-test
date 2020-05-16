@@ -2,6 +2,8 @@
 layout: "base"
 ---
 <article>
-    <a href="{{ url }}"><h2>&#8604; {{ title }}</h2></a>
+    <a href="{{ sourceUrl }}"><h2>&#8604; {{ title }}</h2></a>
        {{ content | safe }}
+<p>
+<cite>— <time datetime="{{ date }}">שועתק ב-{{ date }}</time> | מקור:  <a href="{{ sourceUrl }}">{{ sourceName }}</a></cite></p>
 </article>

@@ -11,6 +11,8 @@ eleventyNavigation:
 <article class="links">
   <a href="{{ link.data.url }}"><h4>↜ {{ link.data.title }}</h4></a>
   {{ link.templateContent | safe }}
+  <p>
+<cite>— <time datetime="{{ link.data.date }}">שועתק ב-{{ link.data.date }}</time> | מקור:  <a href="{{ link.data.sourceUrl }}">{{ link.data.sourceName }}</a></cite></p>
 </article>
 {% endfor %}
 [דווחו]({{ '/about/' | url }}) אם מצאתם לינק שבור.
