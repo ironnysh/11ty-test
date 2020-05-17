@@ -1,8 +1,6 @@
 const pluginRss = require("@11ty/eleventy-plugin-rss")
 const pluginNavigation = require("@11ty/eleventy-navigation")
-const contentParser = require("./src/assets/js/contentParser.js");
-const hebrewDate = require("./src/_filters/hebrewDate.js")
-
+const contentParser = require("./src/utils/contentParser.js");
 
 module.exports = function (eleventyConfig) {
   // Plugins
@@ -17,29 +15,27 @@ module.exports = function (eleventyConfig) {
   });
 
   // Filters
-  eleventyConfig.addFilter("squash", require("./src/_filters/squash.js"));
-  eleventyConfig.addFilter('hebrewDate', hebrewDate);
+  eleventyConfig.addFilter("squash", require("./src/utils/squash.js"));
 
-  eleventyConfig.addFilter('displayDate', function (date) {
-    return new Date(date).toLocaleDateString('he-IL', {
-      month: 'long',
-      year: 'numeric'
+  // Dates
+  eleventyConfig.addFilter("shortDate", function (date) {
+    return new Date(date).toLocaleDateString("he-IL", {
+      month: "long",
+      year: "numeric"
     })
   })
+  eleventyConfig.addFilter("fullDate", function (date) {
+    return new Date(date).toLocaleDateString("he-IL")
+  })
 
-  eleventyConfig.addFilter("oldHebrewDate", (dateObj) => {
-    const options = { year: "numeric", month: "long" };
-    return new Date(dateObj).toLocaleDateString("he-IL", options);
-  });
+  // contentParser
+  eleventyConfig.addTransform("contentParser", contentParser);
 
   // Layouts
   eleventyConfig.addLayoutAlias("layouts/base", "base.njk")
   eleventyConfig.addLayoutAlias("layouts/page", "page.njk")
   eleventyConfig.addLayoutAlias("layouts/links", "links.njk")
   eleventyConfig.addLayoutAlias("layouts/thoughts", "thoughts.njk")
-
-  // contentParser
-  eleventyConfig.addTransform("contentParser", contentParser);
 
   // Pass-through Files
   eleventyConfig.addPassthroughCopy("src/assets")

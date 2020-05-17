@@ -7,7 +7,7 @@
   <title>{{ meta.title }} | {{ title }}</title>
   <meta name="description" content="{{ description }}">
   <link rel="icon" href="/assets/images/favicon.png" type="image/png" />
-  <link rel="alternate" href="{{ meta.feedUrl }}" title="{{ meta.title }}" type="application/atom+xml" >
+  <link rel="alternate" href="{{ meta.feedUrl }}" title="{{ meta.title }}" type="application/rss+xml" >
 </head>
 <body>
         {% include "header.njk" %}
@@ -15,6 +15,6 @@
             {{ content | safe }}
     </main>
         {% include "footer.njk" %}
-    <script>{% include "src/assets/js/search.js" %}</script>
+    <script>{% include "src/utils/search.js" %}</script>
 </body>
 </html>

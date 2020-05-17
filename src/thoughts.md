@@ -1,19 +1,13 @@
 ---
 layout: "page"
-title: "פוסטים, כתבות והרהורים"
-description: "פוסטים וכתבות מאת לירון מילשטיין"
+title: "מחשבות והרהורים"
+description: "ארכיון פוסטים וכתבות מאת לירון מילשטיין"
 permalink: "/thoughts/"
 eleventyNavigation:
   key: "מחשבות"
   order: 2
 ---
-{%- for thought in collections.thoughts | reverse -%}
-<section>
-  <a href="{{ thought.url }}"><h5>{{ thought.data.title }}</h5></a>
-  <time>{{ thought.date.toLocaleDateString('he-IL') }}</time><br>
-  <time>{{ thought.date | oldHebrewDate }}</time><br>
-<time datetime="{{ thought.date }}">{{ thought.date | displayDate }}</time><br>
-<time datetime="{{ thought.date }}">{{ thought.date | hebrewDate }}</time>
-
-</section>
-{%- endfor -%}
+{% from "layouts/thoughts.njk" import thoughtList %}
+{% for thought in collections.thoughts | reverse %}
+  {{ thoughtList(thought.url, thought.data.title, thought.data.date) }}
+{% endfor %}

@@ -7,12 +7,8 @@ eleventyNavigation:
   key: "בקטנה"
   order: 3
 ---
-{%- for link in collections.links | reverse -%}
-<article class="links">
-  <a href="{{ link.data.url }}"><h4>↜ {{ link.data.title }}</h4></a>
-  {{ link.templateContent | safe }}
-  <p>
-<cite>— <time datetime="{{ link.data.date }}">שועתק ב-{{ link.data.date }}</time> | מקור:  <a href="{{ link.data.sourceUrl }}">{{ link.data.sourceName }}</a></cite></p>
-</article>
+{% from "layouts/links.njk" import linkPost %}
+{% for link in collections.links | reverse %}
+  {{ linkPost(link.data.sourceUrl, link.data.title, link.templateContent, link.data.date, link.data.sourceName) }}
 {% endfor %}
 [דווחו]({{ '/about/' | url }}) אם מצאתם לינק שבור.
