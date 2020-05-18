@@ -1,6 +1,7 @@
 const pluginRss = require("@11ty/eleventy-plugin-rss")
 const pluginNavigation = require("@11ty/eleventy-navigation")
 const contentParser = require("./src/utils/contentParser.js");
+const fs = require("fs")
 
 module.exports = function (eleventyConfig) {
   // Plugins
