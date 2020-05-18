@@ -31,6 +31,21 @@ module.exports = function (eleventyConfig) {
   // contentParser
   eleventyConfig.addTransform("contentParser", contentParser);
 
+  // 404
+  eleventyConfig.setBrowserSyncConfig({
+    callbacks: {
+      ready: function (err, browserSync) {
+        const content_404 = fs.readFileSync("_site/404.html");
+
+        browserSync.addMiddleware("*", (req, res) => {
+          // Provides the 404 content without redirect.
+          res.write(content_404);
+          res.end();
+        });
+      }
+    }
+  });
+
   // Layouts
   eleventyConfig.addLayoutAlias("layouts/base", "base.njk")
   eleventyConfig.addLayoutAlias("layouts/page", "page.njk")
