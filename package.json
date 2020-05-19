@@ -21,9 +21,7 @@
   "keywords": [],
   "author": "Ronny Shani",
   "license": "ISC",
-  "bugs": {
-    ""
-  },
+
   "homepage": "https://github.com/ironnysh/11ty-test#readme",
   "devDependencies": {
     "@11ty/eleventy": "^0.10.0",
