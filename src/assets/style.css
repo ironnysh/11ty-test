@@ -30,7 +30,6 @@ h3 { font-size: 1.7em; }
 h4 { font-size: 1.4em; }
 h5 { font-size: 1.2em; }
 h6 { font-size: 1em; }
-small { font-size: 0.833em; }
 h1 { line-height: 3rem; }
 h2 { margin: 1rem 0 2rem;}
 p, ul, ol, h1, h3, h4, h5, h6 { margin: 1rem 0 0; }
@@ -48,15 +47,12 @@ a:visited { color: #69b7ff; }
 mark { color: inherit; background-color: #fcc7d8; }
 
 /* Layout */
-body { margin: 1rem 1ch; }
-
-body > header { margin-bottom: 2em; }
-
-header, main, body {
-  display: block; /* Just in case */
+body {
   max-width: 60ch;
   margin: auto;
 }
+
+header { margin-bottom: 2em; }
 
 main {
   border-top: 1px solid #888;
