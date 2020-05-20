@@ -4,16 +4,16 @@ layout: "base"
 <article dir="auto">
     <h2>{{ title }}</h2>
           {{ content | safe }}
-    <section class="postMeta">
+    <aside>
     עוד <a href="{{ '/thoughts/' | url }}">מחשבות</a> על {%- for tag in tags -%} {%- if tag != "thoughts" -%}<a href="/thoughts/tags/{{ tag }}/"> {{ tag }} </a> •  
      {% endif %}{% endfor %} 
     <time datetime="{{ page.date }}">{{ page.date | shortDate }}</time>
-    </section>
+    </aside>
 </article>
 
 {% macro thoughtList(url, title, date) %}
 <section>
-  <a href="{{ url }}"><h5>{{ title }}</h5></a>
+  <a href="{{ url }}"><h3>{{ title }}</h3></a>
   <time datetime="{{ date }}">{{ date | shortDate }}</time>
 </section>
 {% endmacro %}

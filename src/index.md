@@ -9,11 +9,11 @@ permalink: "/"
 <article>
 <h2>{{ thought.data.title }}</h2>
     {{ thought.templateContent | safe }}
-<section class="postMeta">
+<aside>
     עוד <a href="{{ '/thoughts/' | url }}">מחשבות</a> על {% for tag in thought.data.tags %} {% if tag != "thoughts" %}<a href="/thoughts/tags/{{ tag }}/"> {{ tag }} </a> •  
     {% endif %}{% endfor -%}
     <time datetime="{{ thought.date }}">{{ thought.date | shortDate }}</time>
-</section>
+</aside>
     </article>
     {% endif %}
     {% endfor %}

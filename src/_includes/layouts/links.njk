@@ -1,6 +1,6 @@
 {% macro linkPost(sourceUrl, title, content, date, sourceName) %}
 <article class="links">
-<a href="{{ sourceUrl }}"><h4>{{ title }}</h4></a>
+<a href="{{ sourceUrl }}"><h3>{{ title }}</h3></a>
    {{ content | safe }}
 <p>
 <cite><time datetime="{{ date }}">שועתק ב-{{ date | fullDate }}</time> • מקור: <a href="{{ sourceUrl }}">{{ sourceName }}</a></cite></p>
