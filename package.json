@@ -5,9 +5,6 @@
   "main": ".eleventy.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "clean": "npx del _site",
-    "prestart": "npm run clean",
-    "prebuild": "npm run clean",
     "serve": "npx eleventy --serve",
     "start": "npm run serve",
     "build": "npx eleventy",
