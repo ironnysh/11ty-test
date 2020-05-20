@@ -11,33 +11,29 @@
 
 /* Typography */
 @font-face {
-  font-family: 'Varela Round';
-  font-style: normal;
-  font-weight: 400;
+  font-family: "Varela Round";
   font-display: swap;
-  src: url('fonts/varela-round-v12-latin_hebrew-regular.woff2') format('woff2');
+  src: url("fonts/varela-round-v12-latin_hebrew-regular.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: 'Miriam Libre';
-  font-style: normal;
-  font-weight: 400;
+  font-family: "Miriam Libre";
   font-display: swap;
-  src: url('fonts/MiriamLibre-Regular.ttf') format('truetype');
+  src: url("fonts/MiriamLibre-Regular.ttf") format("truetype");
 }
 
-h1, h2, h3, h4, h5, h6, th { font-weight: normal; }
+h1, h2, h3, h4, h5, h6 { font-weight: normal; }
 
-h1 { font-size: 2.488em; }
-h2 { font-size: 2.074em; }
-h3 { font-size: 1.728em; }
-h4 { font-size: 1.44em; }
+h1 { font-size: 2.5em; }
+h2 { font-size: 2.1em; }
+h3 { font-size: 1.7em; }
+h4 { font-size: 1.4em; }
 h5 { font-size: 1.2em; }
 h6 { font-size: 1em; }
 small { font-size: 0.833em; }
-h1, h2, h3 { line-height: 3rem; }
-h2 { border-top: 1px solid #888; }
-p, ul, ol, dl, table, blockquote, h1, h2, h3, h4, h5, h6 { margin: 1rem 0 0; }
+h1 { line-height: 3rem; }
+h2 { margin: 1rem 0 2rem;}
+p, ul, ol, h1, h3, h4, h5, h6 { margin: 1rem 0 0; }
 ul ul, ol ol, ul ol, ol ul { margin: 0; }
 hr {
     border: 1px solid #888;
@@ -49,23 +45,25 @@ body { color: #333; background: #f8f1eb; }
 a, header nav a:visited { color: orangered; }
 a:visited { color: #69b7ff; }
 .logo, .logo a { color: olivedrab; }
-thead, tfoot { background-color: #f0efed; }
 mark { color: inherit; background-color: #fcc7d8; }
-main aside, blockquote { border: solid rgb(201 204 194 / 0.26); }
-th, td { border: solid #dbdbdb; }
 
 /* Layout */
 body { margin: 1rem 1ch; }
 
 body > header { margin-bottom: 2em; }
 
-header, main, body > footer {
+header, main, body {
   display: block; /* Just in case */
   max-width: 60ch;
   margin: auto;
 }
 
-main aside {
+main {
+  border-top: 1px solid #888;
+  border-bottom: 1px dotted #333;
+}
+
+aside {
   float: left;
   margin: 1.5rem 1ch 0 0;
   max-width: 26ch;
@@ -76,16 +74,13 @@ main aside {
 article { text-align: justify; }
 
 footer {
-  border-top: 1px dotted #333;
   text-align: end;
-}
-
-footer p {
   font-size: small;
   color: #999;
+  margin: 1rem 0 0;
 }
 
-/* Header */
+/* Logo */
 .logo {
   background: url(images/logo.png) no-repeat right;
   background-color: hsl(27.7deg 48.1% 94.7% / 60%);
@@ -97,21 +92,22 @@ footer p {
 
 .logo h4 { margin: 0.12em 0 0 0; }
 
-/* Text blocks */
+/* Text elements */
 a { text-decoration: none; }
 
 mark { padding: 1px; }
 
 blockquote {
-  border-width: 0 1.5ch 0 0;
-  padding: 0 1ch 0 0;
-  margin-inline-end: 3.5ch;
-  margin-inline-start: 1.5ch;
-  font-family: 'Miriam Libre', sans-serif;
+  border: none;
+  border-inline-start: 1em solid rgb(201 204 194 / 0.26);
+  padding: 0 0.5em 0 0;
+  margin-inline-end: 2em;
+  margin-inline-start: 1em;
+  font-family: "Miriam Libre", sans-serif;
   font-size: 0.95rem;
 }
 
-p cite {
+cite {
   font-style: normal;
   font-size: small;
 }
@@ -121,6 +117,14 @@ time { font-size: small; }
 .links {
   border-bottom: 1px solid #888;
   margin: 2em 0;
+}
+
+.links h4:before {
+  content: "\00219C \00a0";
+}
+
+.links cite:before {
+  content: "\2014  \00a0";
 }
 
 .postMeta {
@@ -140,9 +144,7 @@ figcaption {
   text-align: end;
 }
 
-img { max-width: 100%; }
-
-header img { opacity: 60%; }
+img { max-width: 100%; border-radius: 5px; }
 
 video, audio {
   max-width: 100%;
@@ -150,7 +152,6 @@ video, audio {
 }
 
 /* Horizontal Gallery */
-
 .infinity {
   display: flex;
   flex-wrap: nowrap;
@@ -172,8 +173,6 @@ video, audio {
   width: 295px;
 }
 
-.infinity img { border-radius: 5px; }
-
 .infinity::-webkit-scrollbar { display: none; }
 
 /* Lists */
@@ -183,13 +182,9 @@ ul > li { list-style-type: disc; }
 
 li ul > li { list-style-type: circle; }
 
-li li ul > li { list-style-type: square; }
-
 ol > li { list-style-type: decimal-leading-zero; }
 
 li ol > li { list-style-type: lower-roman; }
-
-li li ol > li { list-style-type: lower-alpha; }
 
 /* Nav */
 nav ul {
@@ -206,7 +201,7 @@ nav ul li {
 
 nav ul li:first-child { padding-inline-start: 0; }
 
-.nav-item-current a { border-bottom: 1px solid orangered; }
+.nav-item-current a { border-bottom: 2px solid orangered; }
 
 nav ul li a:active { border-bottom: 1px solid orangered; }
 
