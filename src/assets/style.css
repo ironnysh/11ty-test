@@ -22,17 +22,16 @@
   src: url("fonts/MiriamLibre-Regular.ttf") format("truetype");
 }
 
-h1, h2, h3, h4, h5, h6 { font-weight: normal; }
+h1, h2, h3, h4, h5 { font-weight: normal; }
 
 h1 { font-size: 2.5em; }
 h2 { font-size: 2.1em; }
 h3 { font-size: 1.7em; }
 h4 { font-size: 1.4em; }
 h5 { font-size: 1.2em; }
-h6 { font-size: 1em; }
 h1 { line-height: 3rem; }
 h2 { margin: 1rem 0 2rem;}
-p, ul, ol, h1, h3, h4, h5, h6 { margin: 1rem 0 0; }
+p, ol, h1, h3, h4, h5 { margin: 1rem 0 0; }
 ul ul, ol ol, ul ol, ol ul { margin: 0; }
 hr {
     border: 1px solid #888;
@@ -72,7 +71,7 @@ article { text-align: justify; }
 footer {
   text-align: end;
   font-size: small;
-  color: #999;
+  color: #888;
   margin: 1rem 0 0;
 }
 
@@ -100,7 +99,7 @@ blockquote {
   margin-inline-end: 2em;
   margin-inline-start: 1em;
   font-family: "Miriam Libre", sans-serif;
-  font-size: 0.95rem;
+  font-size: 0.95em;
 }
 
 cite {
@@ -172,27 +171,19 @@ video, audio {
 .infinity::-webkit-scrollbar { display: none; }
 
 /* Lists */
-ul, ol { padding: 0 3ch 0 0; }
 
-ul > li { list-style-type: disc; }
+ul li { list-style-type: circle; }
 
-li ul > li { list-style-type: circle; }
-
-ol > li { list-style-type: decimal-leading-zero; }
-
-li ol > li { list-style-type: lower-roman; }
+ol li { list-style-type: decimal-leading-zero; }
 
 /* Nav */
 nav ul {
   padding: 0;
-  margin: 0;
-  list-style-type: none;
 }
 
 nav ul li {
   display: inline;
   padding-inline-start: 1ch;
-  white-space: nowrap;
 }
 
 nav ul li:first-child { padding-inline-start: 0; }
@@ -201,7 +192,7 @@ nav ul li:first-child { padding-inline-start: 0; }
 
 nav ul li a:active { border-bottom: 1px solid orangered; }
 
-nav ol > li{
+nav ol li{
   display: list-item;
   padding-inline-start: 0;
 }
@@ -214,7 +205,6 @@ nav ol > li{
 background: none;
 border: none;
 border-bottom: 1px solid #888;
-font-size: inherit;
 outline: none;
 font: inherit;
 color: #888;
