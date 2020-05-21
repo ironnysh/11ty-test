@@ -3,7 +3,7 @@ layout: "base"
 ---
 <article dir="auto">
     <h2>{{ title }}</h2>
-          {{ content | safe -}}
+          {{ content | safe }}
     <aside>
     עוד <a href="{{ '/thoughts/' | url }}">מחשבות</a> על {%- for tag in tags -%} {%- if tag != "thoughts" -%}<a href="/thoughts/tags/{{ tag }}/"> {{ tag }} </a> •  
      {% endif %}{% endfor %} 
