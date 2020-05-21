@@ -33,9 +33,9 @@ hr {
 
 /* Colors */
 body { color: #333; background: #f8f1eb; }
-a, header nav a:visited { color: orangered; }
+a, nav a:visited { color: orangered; }
 a:visited { color: #69b7ff; }
-.logo, .logo a { color: olivedrab; }
+.logo, .logo a, a.menu.current { color: olivedrab; }
 mark { color: inherit; background-color: #fcc7d8; }
 
 /* Layout */
@@ -157,25 +157,9 @@ ul li { list-style-type: circle; }
 ol li { list-style-type: decimal-leading-zero; }
 
 /* Nav */
-nav ul {
-  padding: 0;
-}
+a.menu { padding-inline-start: 1ch; }
 
-nav ul li {
-  display: inline;
-  padding-inline-start: 1ch;
-}
-
-nav ul li:first-child { padding-inline-start: 0; }
-
-.nav-item-current a { border-bottom: 2px solid orangered; }
-
-nav ul li a:active { border-bottom: 1px solid orangered; }
-
-nav ol li{
-  display: list-item;
-  padding-inline-start: 0;
-}
+nav a:first-child { padding-inline-start: 0; }
 
 /* Search */
 
@@ -203,9 +187,9 @@ width: 20%;
   font-size: 0.9em;
   display: block;
   background: #f8f1eb;
-  padding: 0.5em 4em;
+  padding: 0.5em 3.5em;
   position: absolute;
-  margin: 0 13.7em 0 0;
+  margin: 0 12em 0 0;
   border-radius: 7px;
 }
 
