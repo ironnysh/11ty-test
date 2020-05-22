@@ -5,7 +5,7 @@ layout: "base"
     <h2>{{ title }}</h2>
           {{ content | safe -}}
     <aside>
-    עוד <a href="{{ '/thoughts/' | url }}">מחשבות</a> על {%- for tag in tags -%} {%- if tag != "thoughts" -%}<a href="/thoughts/tags/{{ tag }}/"> {{ tag }} </a> •  
+    עוד <a href="{{ '/thoughts/' | url }}">מחשבות</a> על {%- for tag in tags -%} {%- if tag != "thoughts" -%} <a href="/thoughts/tags/{{ tag }}/"> {{ tag }} </a> •  
      {% endif %}{% endfor %} 
     <time datetime="{{ page.date }}">{{ page.date | shortDate }}</time>
     </aside>

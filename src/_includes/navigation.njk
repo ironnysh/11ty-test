@@ -3,7 +3,7 @@
     {%- set isCurrent = (item.url == page.url) -%}
       <a href="{{ item.url | url }}" class="menu{% if isCurrent %} current{% endif %}">{{ item.title }}</a>
     {% endfor %}
-      <a href="/search" id="search-link" class="search">🔍</a>
+      <a href="/search" id="search-link" class="menu">🔍</a>
         <span class="search-ui invisible">
           <input type="text" id="search-str" class="search-str" placeholder="חיפוש"/>
             <ol class="search-results"></ol>

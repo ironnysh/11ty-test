@@ -7,13 +7,21 @@ permalink: "/"
 {% for thought in collections.thoughts | reverse %}
 {% if loop.first %}
 <article>
-<h2>{{ thought.data.title }}</h2>
-    {{ thought.templateContent | safe }}
-<aside>
-    עוד <a href="{{ '/thoughts/' | url }}">מחשבות</a> על {% for tag in thought.data.tags %} {% if tag != "thoughts" %}<a href="/thoughts/tags/{{ tag }}/"> {{ tag }} </a> •  
-    {% endif %}{% endfor -%}
-    <time datetime="{{ thought.date }}">{{ thought.date | shortDate }}</time>
-</aside>
+
+## {{ thought.data.title }}
+
+{{ thought.templateContent | safe }}
+
+{% meta %}
+{% for tag in thought.data.tags %}
+{% if tag != "thoughts" %}
+[{{ tag }}](/thoughts/tags/{{ tag }}/){% endif %}{% endfor -%}{{ thought.date | shortDate }}{% endmeta %}
+
+{% postMeta thought.data.tags | join(" • "), thought.data.date | shortDate %}
+מילה:
+{% for tag in thought.data.tags %}{% if tag != "thoughts" %}
+[{{ tag }}](/thoughts/tags/{{ tag }}/){% endif %}{% endfor -%}
+{% endpostMeta %}
     </article>
     {% endif %}
     {% endfor %}

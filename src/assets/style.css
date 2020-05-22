@@ -33,9 +33,9 @@ hr {
 
 /* Colors */
 body { color: #333; background: #f8f1eb; }
-a, nav a:visited { color: orangered; }
-a:visited { color: #69b7ff; }
-.logo, .logo a, a.menu.current { color: olivedrab; }
+a { color: orangered; }
+a:visited:not([class]) { color: #69b7ff; }
+.logo, .logo a:visited, a.menu.current { color: olivedrab; }
 mark { color: inherit; background-color: #fcc7d8; }
 
 /* Layout */
@@ -107,7 +107,7 @@ time { font-size: small; }
 }
 
 .links cite:before {
-  content: "\2014  \00a0";
+  content: "\2014 \00a0";
 }
 
 /* Media */
@@ -120,12 +120,7 @@ figcaption {
   text-align: end;
 }
 
-img { max-width: 100%; border-radius: 5px; }
-
-video, audio {
-  max-width: 100%;
-  height: auto;
-}
+img, video { max-width: 100%; border-radius: 5px; }
 
 /* Horizontal Gallery */
 .infinity {
@@ -157,14 +152,9 @@ ul li { list-style-type: circle; }
 ol li { list-style-type: decimal-leading-zero; }
 
 /* Nav */
-a.menu { padding-inline-start: 1ch; }
-
-nav a:first-child { padding-inline-start: 0; }
+a.menu:not(:first-child) { padding-inline-start: 1ch; }
 
 /* Search */
-
-.search { padding-inline-start: 1ch; }
-
 .search-str {
 background: none;
 border: none;

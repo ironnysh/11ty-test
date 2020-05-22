@@ -29,6 +29,15 @@ module.exports = function (eleventyConfig) {
     return new Date(date).toLocaleDateString("he-IL")
   })
 
+  eleventyConfig.addPairedShortcode("meta", function (content, date ="thought.date") {
+  return `<aside>עוד <a href="/thoughts/">מחשבות</a> על ${content} <time>${date}</time></aside>`;
+  });
+  
+  eleventyConfig.addPairedShortcode("postMeta", function (tags, date, content) {
+  return ("<aside>עוד <a href='/thoughts/'>מחשבות</a> על" + tags + "<time>" + date + "</time>" + content + "</aside>");
+  });
+
+
   // contentParser
   eleventyConfig.addTransform("contentParser", contentParser);
 
