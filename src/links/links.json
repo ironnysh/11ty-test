@@ -1,5 +1,5 @@
 {
   "tags": "links",
   "layout": "links",
-  "permalink": false
+  "permalink": "links/{{ page.fileSlug }}.html"
 }

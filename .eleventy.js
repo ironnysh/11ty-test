@@ -28,16 +28,43 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("fullDate", function (date) {
     return new Date(date).toLocaleDateString("he-IL")
   })
+    eleventyConfig.addPairedShortcode("meta", function (
+      content,
+      date = "thought.date"
+    ) {
+      return `<aside>עוד <a href="/thoughts/">מחשבות</a> על ${content} <time>${date}</time></aside>`;
+    });
 
-  eleventyConfig.addPairedShortcode("meta", function (content, date ="thought.date") {
-  return `<aside>עוד <a href="/thoughts/">מחשבות</a> על ${content} <time>${date}</time></aside>`;
-  });
-  
-  eleventyConfig.addPairedShortcode("postMeta", function (tags, date, content) {
-  return ("<aside>עוד <a href='/thoughts/'>מחשבות</a> על" + tags + "<time>" + date + "</time>" + content + "</aside>");
-  });
+    eleventyConfig.addPairedShortcode("postMeta", function (
+      tags,
+      date,
+      content
+    ) {
+      return (
+        "<aside>עוד <a href='/thoughts/'>מחשבות</a> על" +
+        tags +
+        "<time>" +
+        date +
+        "</time>" +
+        content +
+        "</aside>"
+      );
+    });
 
-
+    eleventyConfig.addShortcode("gist", (opts = {}) => {
+      opts = Object.assign({ username: "pdehaan" }, opts);
+      if (!opts.gistId) {
+        return;
+      }
+      const url = new URL(
+        `/${opts.username}/${opts.gistId}.js`,
+        "https://gist.github.com"
+      );
+      if (opts.file) {
+        url.searchParams.set("file", opts.file);
+      }
+      return `<script src="${url.href}"></script>`;
+    });
   // contentParser
   eleventyConfig.addTransform("contentParser", contentParser);
 
