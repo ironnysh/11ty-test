@@ -1,0 +1,88 @@
+
+  
+    eleventyConfig.addPairedShortcode("meta", function (
+      content,date) {
+      return `<aside style="border: 1px solid red;>עוד <a href="/thoughts/">מחשבות</a> על ${content}<time> the date is: ${date}</time></aside>`;
+    });
+
+    eleventyConfig.addPairedShortcode("postMeta", function (
+      tags,
+      date,
+      content
+    ) {
+      return (
+        "<aside>עוד <a href='/thoughts/'>מחשבות</a> על" +
+        tags +
+        "<time>" +
+        date +
+        "</time>" +
+        content +
+        "</aside>"
+      );
+    });
+
+  
+
+
+    eleventyConfig.addShortcode("myMeta", (opts = {}) => {
+      opts = Object.assign({ title: "Air Freelance" }, opts);
+      if (!opts.permalink) {
+        return;
+      }
+      const url = new URL(
+        `/${opts.title}/${opts.permalink}.js`,
+        "https://gist.github.com"
+      );
+      return `<p>${url.href}"></p>`;
+    });
+  
+
+
+
+  
+    eleventyConfig.addShortcode("gist", (opts = {}) => {
+      opts = Object.assign({ username: "ironnysh" }, opts);
+      if (!opts.gistId) {
+        return;
+      }
+      const url = new URL(
+        `/${opts.username}/${opts.gistId}.js`,
+        "https://gist.github.com"
+      );
+      if (opts.file) {
+        url.searchParams.set("file", opts.file);
+      }
+      return `<script src="${url.href}"></script>`;
+    });
+  
+
+
+
+
+  {%- myMeta title="Air Freelance",
+      permalink=permalink -%}
+
+{% meta %}
+{% for tag in thought.data.tags %}
+{% if tag != "thoughts" %}
+
+[{{ tag }}](/thoughts/tags/{{ tag }}/){% endif %}{% endfor -%}{{ thought.data.date | shortDate }}{% endmeta %}
+
+{% postMeta thought.data.tags | join(" • "), thought.data.date | shortDate %}
+מילה:
+{% for tag in thought.data.tags %}{% if tag != "thoughts" %}
+[{{ tag }}](/thoughts/tags/{{ tag }}/){% endif %}{% endfor -%}
+{% endpostMeta %}
+
+---
+title: "Testing embedding a gist via a script tag"
+username: "ironnysh"
+gistId: "ae74a0f5a853505ee99e7f97953d4532"
+layout: "base"
+---
+<h2>{{ title }}</h2>
+{% for file in ["search.js"] %}
+  {%- gist username="ironnysh",
+      gistId=gistId,
+      file=file -%}
+{% endfor %}

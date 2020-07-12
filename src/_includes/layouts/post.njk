@@ -1,0 +1,17 @@
+---
+layout: "base"
+---
+<section>
+    <h1>{{ title }}</h1>
+    <p>
+      <span>
+        Written {{ page.date }}.
+      <span>
+        {{ tags | tagList | safe }}
+      </span>
+    </p>
+  <div>
+    {{ content | safe }}
+ </div>
+
+</section>

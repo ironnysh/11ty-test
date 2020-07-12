@@ -1,0 +1,19 @@
+{
+  "items": [
+    {
+      "text": "אני",
+      "url": "/about/",
+      "external": false
+    },
+    {
+      "text": "מחשבות",
+      "url": "/thoughts/",
+      "external": false
+    },
+    {
+      "text": "קטנות",
+      "url": "/notes/",
+      "external": false
+    }
+  ]
+}

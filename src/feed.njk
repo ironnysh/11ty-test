@@ -1,0 +1,29 @@
+---json
+{
+  "permalink": "/feed.xml",
+  "eleventyExcludeFromCollections": true
+}
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>{{ meta.title }}</title>
+  <subtitle>{{ meta.description }}</subtitle>
+  <link href="{{ meta.url }}{{ permalink }}" rel="self"/>
+  <link href="{{ meta.url }}/"/>
+  <updated>{{ collections.thoughts | fullDate }}</updated>
+  <id>{{ meta.url }}/</id>
+  <author>
+    <name>{{ meta.author.name }}</name>
+  </author>
+  {%- for thought in collections.thoughts %}
+    {% set mappedUrl %}{{ metadata.url}}{{ page.url | url }}{% endset %}
+
+  <entry>
+    <title>{{ thought.data.title }}</title>
+    <link href="{{ mappedUrl }}"/>
+    <updated>{{ thought.date | fullDate }}</updated>
+    <id>{{ mappedUrl }}</id>
+    <content type="html">{{ thought.templateContent | jsonStringify | safe }}</content>
+  </entry>
+  {%- endfor %}
+</feed>

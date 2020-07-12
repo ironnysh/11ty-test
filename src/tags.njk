@@ -1,23 +1,29 @@
 ---
-title: "עוד מחשבות על אודות"
-pagination:
-  data: collections
-  size: 1
-  alias: tag
-  filter:
-    - all
-    - links
-    - thoughts
-    - thought
-    - tags
-permalink: "thoughts/tags/{{ tag }}/"
 layout: "base"
 ---
-<h2>{{ title }} {{ tag }}</h2>
-{% set tags = collections[ tag ] %}
+
+<h1>All Tags</h1>
+
 <section>
-{% for thought in tags | reverse %}
-    <a href="{{ thought.url | url }}"><h3>{{ thought.data.title }}</h3></a>
-  <time datetime="{{ thought.date }}">{{ thought.date | shortDate }}</time>
-{% endfor %}
+  {% for tag, posts in collections | dictsort %}
+    {% if tag !== "posts" %}
+      <span>
+        <a href="/tags/{{ tag | slug }}">{{ tag }}</a>
+        <span
+        {% set c = posts.length %}
+        {% if c > 40 %}
+          bg-gray-600 text-white
+        {% elif c > 30 %}
+          bg-gray-500 text-white
+        {% elif c > 20 %}
+          bg-gray-400
+        {% elif c > 10 %}
+          bg-gray-200
+        {% else %}
+          bg-gray-100
+        {% endif %}
+        ">{{c}}</span>
+      </span>
+    {% endif %}
+  {% endfor %}
 </section>

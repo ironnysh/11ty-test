@@ -1,0 +1,25 @@
+---
+title: "All My tags"
+layout: "base"
+permalink: "tags/{{ item.slug }}/"
+---
+<h2>{{ title }}</h2>
+<ul>
+{% set tags = collections[ tag ] %}
+
+    {% for item in topics.items -%}
+    <li><a href="{{ item.slug }}">{{ item.name }}</li>
+    {% endfor -%}
+</ul>
+
+{% for tag in thought.data.tags %}
+      {% set tagUrl %}/tags/{{ item.slug }}/{% endset %}
+      <a href="{{ tagUrl | url }}" class="tag">{{ item.name }}</a>
+{% endfor %}
+
+{% for thought in tags | reverse %}
+<section>
+    <a href="{{ thought.url | url }}"><h3>{{ thought.data.title }}</h3></a>
+  <time datetime="{{ thought.date }}">{{ thought.date | shortDate }}</time>
+{% endfor %}
+</section>

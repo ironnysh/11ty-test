@@ -13,10 +13,11 @@ function btnHandler(buttonId, listener) {
     var searchUI = document.querySelector(".search-ui");
     var resultsUI = document.querySelector(".search-results");
     var searchInput = document.querySelector("#search-str");
+    var resultsBack = document.querySelector("article");
     // clear the current results
     var clearResults = function () {
         while (resultsUI.firstChild) {
-            resultsUI.removeChild(resultsUI.firstChild);
+        resultsUI.removeChild(resultsUI.firstChild);
         }
     };
     // search and display
@@ -29,6 +30,7 @@ function btnHandler(buttonId, listener) {
             if (found != -1) {
                 results.push(searchIndex[item]);
                 resultsUI.classList.add("show");
+                resultsBack.classList.add("blur");
             }
         }
         // build and insert the new result entries
@@ -60,7 +62,7 @@ function btnHandler(buttonId, listener) {
             } else {
                 clearResults();
                 resultsUI.classList.remove("show");
-
+                resultsBack.classList.remove("blur");
             }
         });
     });

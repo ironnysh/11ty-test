@@ -1,14 +1,32 @@
-const pluginRss = require("@11ty/eleventy-plugin-rss")
 const pluginNavigation = require("@11ty/eleventy-navigation")
 const contentParser = require("./src/utils/contentParser.js");
 const fs = require("fs")
 
 module.exports = function (eleventyConfig) {
   // Plugins
-  eleventyConfig.addPlugin(pluginRss)
   eleventyConfig.addPlugin(pluginNavigation)
 
   eleventyConfig.setDataDeepMerge(true);
+
+  eleventyConfig.addWatchTarget("./src/utils/");
+
+    // Content for json search
+  eleventyConfig.addFilter('jsonContent', content => {
+    if (content) {
+      content = content.replace(/(\r\n|\n|\r)/gm, "");
+      content = content.replace(/\t/g, "\\t");
+      content = content.replace(/"/g, '\\"');
+    }
+    return content;
+  });
+
+  // Content for json feed
+  eleventyConfig.addFilter('jsonStringify', content => {
+    if (!content) {
+      content = "";
+    }
+    return JSON.stringify(content);
+  });
 
   // Collection
   eleventyConfig.addCollection("thoughts", function (collection) {
@@ -17,6 +35,7 @@ module.exports = function (eleventyConfig) {
 
   // Filters
   eleventyConfig.addFilter("squash", require("./src/utils/squash.js"));
+
 
   // Dates
   eleventyConfig.addFilter("shortDate", function (date) {
@@ -28,43 +47,16 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("fullDate", function (date) {
     return new Date(date).toLocaleDateString("he-IL")
   })
-    eleventyConfig.addPairedShortcode("meta", function (
-      content,
-      date = "thought.date"
-    ) {
-      return `<aside>עוד <a href="/thoughts/">מחשבות</a> על ${content} <time>${date}</time></aside>`;
-    });
+  
 
-    eleventyConfig.addPairedShortcode("postMeta", function (
-      tags,
-      date,
-      content
-    ) {
-      return (
-        "<aside>עוד <a href='/thoughts/'>מחשבות</a> על" +
-        tags +
-        "<time>" +
-        date +
-        "</time>" +
-        content +
-        "</aside>"
-      );
-    });
+  eleventyConfig.addFilter("tagList", list => {
+    // "thoughts" is a magic tag used to determine which pages are blog posts.
+    const properTags = list.filter((x) => x != "posts");
+    if (!properTags) return;
+    return `<aside>"עוד מחשבות"` + properTags.map(tag => `<a href="/tags/${(tag)}">${tag}</a>`).join(" • ") + `</aside>`;
+  });
 
-    eleventyConfig.addShortcode("gist", (opts = {}) => {
-      opts = Object.assign({ username: "pdehaan" }, opts);
-      if (!opts.gistId) {
-        return;
-      }
-      const url = new URL(
-        `/${opts.username}/${opts.gistId}.js`,
-        "https://gist.github.com"
-      );
-      if (opts.file) {
-        url.searchParams.set("file", opts.file);
-      }
-      return `<script src="${url.href}"></script>`;
-    });
+
   // contentParser
   eleventyConfig.addTransform("contentParser", contentParser);
 
@@ -84,10 +76,10 @@ module.exports = function (eleventyConfig) {
   });
 
   // Layouts
-  eleventyConfig.addLayoutAlias("layouts/base", "base.njk")
-  eleventyConfig.addLayoutAlias("layouts/page", "page.njk")
-  eleventyConfig.addLayoutAlias("layouts/links", "links.njk")
-  eleventyConfig.addLayoutAlias("layouts/thoughts", "thoughts.njk")
+  eleventyConfig.addLayoutAlias("base", "layouts/base.njk");
+  eleventyConfig.addLayoutAlias("page", "layouts/page.njk");
+  eleventyConfig.addLayoutAlias("links", "layouts/links.njk");
+  eleventyConfig.addLayoutAlias("thoughts", "layouts/thoughts.njk");
 
   // Pass-through Files
   eleventyConfig.addPassthroughCopy("src/assets")
@@ -96,7 +88,6 @@ module.exports = function (eleventyConfig) {
   return {
     dir: {
       input: "src",
-      layouts: "_includes/layouts"
     },
     templateFormats: ["njk", "md", "html"],
     htmlTemplateEngine: "njk",

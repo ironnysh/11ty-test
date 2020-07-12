@@ -1,0 +1,35 @@
+---
+title: "עוד מחשבות על אודות"
+layout: "base"
+pagination:
+    data: topics.items
+    size: 1
+permalink: "pagedTags/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber + 1 }}/{% endif %}index.html"
+---
+{% for item in pagination.items -%}
+<h2>{{ title }} {{ item.name }}</h2>
+<ul>
+    <li><a href="{{ item.slug }}">{{ item.name }}</li>
+    {% endfor -%}
+</ul>
+
+<h2>{{ title }} {{ tag }}</h2>
+{% set tags = collections[ tag ] %}
+<section>
+{% for thought in tags | reverse %}
+    <a href="{{ thought.url | url }}"><h3>{{ thought.data.title }}</h3></a>
+  <time datetime="{{ thought.date }}">{{ thought.date | shortDate }}</time>
+{% endfor %}
+</section>
+
+    {% for tag in thought.data.tags %}
+      {% set tagUrl %}/tags/{{ tag }}/{% endset %}
+      <a href="{{ tagUrl | url }}" class="tag">{{ tag }}</a>
+{% endfor %}
+
+{% for thought in tags | reverse %}
+<section>
+    <a href="{{ thought.url | url }}"><h3>{{ thought.data.title }}</h3></a>
+  <time datetime="{{ thought.date }}">{{ thought.date | shortDate }}</time>
+{% endfor %}
+</section>

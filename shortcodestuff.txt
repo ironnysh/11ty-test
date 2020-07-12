@@ -1,0 +1,74 @@
+<a href="/thoughts/tags/{{ tag }}/">{{ [tags] | random }}</a>
+<a href="/thoughts/tags/{{ tag }}/">{{ thought.data.tags | join(" • ") }}</a>
+
+
+
+
+    // Universal Shortcodes (Adds to Liquid, Nunjucks, Handlebars)
+  eleventyConfig.addPairedShortcode("postMeta", function (
+    tags, date
+  ) {
+    return `<aside class="postMeta">עוד <a href="/thoughts/">מחשבות</a> על ${tags} <time>today is ${date}</time>
+</aside>`;
+  });
+
+    // Nunjucks Shortcode
+  eleventyConfig.addNunjucksShortcode("user", function(user) {
+    return `<div class="user">
+<div class="user_name">${user.name}</div>
+${user.twitter ? `<div class="user_twitter">@${user.twitter}</div>` : ''}
+</div>`;
+  });
+
+  // Nunjucks Shortcode
+  eleventyConfig.addNunjucksShortcode("thought", function(thought) {
+    return `<aside>
+<time>${thought.date}</time>
+  ${thought.title ? `<h4>@${thought.title}</h4>` : ""}
+
+</aside>`;
+  });
+{% postMeta "dog", "thought.date" %}
+
+{% endpostMeta %}
+
+{% thought title="something", date="{{ thought.data.date }}" %}
+
+
+
+
+
+
+
+
+
+
+module.exports = config => {
+  config.addPairedShortcode('alert', function (content, options = {}) {
+    const VARIANTS = ['primary', 'secondary', 'success', 'danger'];
+    const {
+      label = 'Note', variant = 'primary'
+    } = options;
+    if (!VARIANTS.includes(variant)) {
+      throw new Error(`${variant} is not supported. Try [${VARIANTS.join(', ')}]`)
+    }
+    return `<div class="alert alert-${variant}" role="alert"><strong>${label}:</strong> ${content}</div>`;
+  })
+}
+
+
+
+//
+ // eleventyConfig.addPairedShortcode("meta2", (content, options = {}) {
+ //   const tags = ['primary', 'secondary', 'success', 'danger'];
+ //   const {
+ //     label = 'Note', variant = 'primary'
+ //   } = options;
+ //   return `<aside class="${variant}">עוד <a href="/thoughts/">מחשבות</a> על ${content}</aside>`;
+ // });
+//
+
+  eleventyConfig.addShortcode("shorttest", function (date) {
+    return ("<time>" + date + "</time>");
+  })
+

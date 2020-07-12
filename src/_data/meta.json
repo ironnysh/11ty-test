@@ -3,6 +3,7 @@
     "description": "מאת לירון מילשטיין",
     "url": "https://air-freelance.com",
     "feedUrl": "https://air-freelance.com/feed.xml",
+    "jsonFeedUrl": "https://air-freelance.com/feed.json",
     "lang": "he-IL",
     "locale": "he-IL",
     "author": {

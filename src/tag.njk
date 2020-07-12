@@ -1,0 +1,21 @@
+---
+title: "עוד מחשבות על אודות"
+layout: "base"
+pagination:
+  data: collections
+  size: 1
+  alias: tag
+  filter:
+  - all
+  - posts
+permalink: "/posts/tags/{{ tag }}/"
+---
+
+<h1>{{ title }} {{ tag }}</h1>
+
+<section>
+{% set tags = collections[ tag ] %}
+{% for post in tags | reverse %}
+  {% include 'components/post-listing.njk' %}
+{% endfor %}
+</section>

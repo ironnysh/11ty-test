@@ -1,0 +1,30 @@
+module.exports = (image, caption, className) => {
+  const classMarkup = className ? ` class="${className}"` : '';
+  const captionMarkup = caption ? `<figcaption>${caption}</figcaption>` : '';
+  return `<figure${classMarkup}><img src="/img/${image}" />${captionMarkup}</figure>`;
+  // the line below does all this in one line, but is more confusing:
+  // return `<figure${className ? ` class="${className}"` : ''}><img src="/img/${image}" />${caption ? `<figcaption>${caption}</figcaption>` : ''}</figure>`;
+};
+
+Include this in .eleventy.js:
+
+eleventyConfig.addShortcode("figure", require("./src/utils/figure.js"));
+
+Usage:
+
+Image only:
+
+{% figure "DSCF1433.jpg" %}
+
+Image with caption:
+
+{% figure "DSCF1433.jpg" "This is a caption" %}
+
+Image with caption and class name:
+
+{% figure "DSCF1433.jpg" "This is a caption" "cinemascope" %}
+
+Image with class name, but no caption:
+
+{% figure "DSCF1433.jpg" "" "cinemascope" %}
+

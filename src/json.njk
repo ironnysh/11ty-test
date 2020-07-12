@@ -1,0 +1,27 @@
+---
+permalink: "/feed.json"
+eleventyExcludeFromCollections: "true"
+---
+{
+  "version": "https://jsonfeed.org/version/1",
+  "title": "{{ meta.title }}",
+  "home_page_url": "{{ meta.url }}",
+  "feed_url": "{{ meta.jsonFeedUrl }}",
+  "description": "{{ meta.description }}",
+  "favicon": "{{ meta.url }}/images/favicon.png",
+  "author": {
+    "name": "{{ meta.author.name }}",
+    "url": "{{ meta.social.twitter }}"
+  },
+  "items": [
+    {%- for thought in collections.thoughts %}
+    {
+      "id": "{{ meta.url }}/{{ thought.url }}",
+      "url": "{{ meta.url }}/{{ thought.url }}",
+      "title": "{{ thought.data.title }}",
+      "content_html": "{{ thought.templateContent | jsonStringify | safe }}",
+      "date_published": "{{ thought.date | fullDate }}"
+    }
+    {%- endfor %}
+  ]
+}
