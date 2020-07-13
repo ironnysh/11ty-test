@@ -1,17 +1,29 @@
 ---
 layout: "base"
 ---
-<section>
-    <h1>{{ title }}</h1>
-    <p>
-      <span>
-        Written {{ page.date }}.
+<article>
+    <h2>{{ title }}  - {{ writer }}</h2>
+          {{ content | safe -}}
+          <section>
+{{ title }}
+{{ writer }}
+{{ publisher }}
+{{ pageNo }}
+{%- if tag != "תרגום" -%} 
+{{ engTitle }} by {{ engWriter }}
+{{ translator }}
+{% endif %}
+<a href="{{ digitalLink }}">לרכישה</a>
+<a href="{{ printLink }}">לרכישה בדיגיטל</a>
+          </section>
+    <aside>
+    עוד <a href="{{ '/posts/' | url }}">סקירות</a> על {%- for tag in tags -%} {%- if tag != "posts" -%} <a href="/posts/tags/{{ tag }}/"> {{ tag }} </a> •  
+     {% endif %}{% endfor %} 
+    <time datetime="{{ page.date }}">{{ page.date | fullDate }}</time>
+    </aside>
+</article>
+
       <span>
         {{ tags | tagList | safe }}
       </span>
-    </p>
-  <div>
-    {{ content | safe }}
- </div>
-
-</section>
+    

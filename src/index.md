@@ -4,11 +4,12 @@ title: "Air Freelance"
 description: "פוסטים וכתבות מאת לירון מילשטיין"
 permalink: "/"
 ---
-{% for thought in collections.thoughts | reverse %}
-{% if loop.first %}
+{% for post in collections.posts | reverse %}
 <article>
-## {{ thought.data.title }}
-{{ thought.templateContent | safe -}}
-{{ thought.data.tags | tagList | safe }}
+
+## {{ post.data.title }} - {{ post.data.writer }}
+{{ post.data.summary }}
+
+[להמשך קריאה]({{ post.url }})
 </article>
-{% endif %}{% endfor %}
+{% endfor %}
