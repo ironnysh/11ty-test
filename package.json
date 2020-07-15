@@ -14,7 +14,7 @@
     "type": "git",
     "url": "git+https://github.com/ironnysh/11ty-test.git"
   },
-  "keywords": [],
+  "keywords": ["11ty"],
   "author": "Ronny Shani",
   "license": "ISC",
   "homepage": "https://github.com/ironnysh/11ty-test#readme",
