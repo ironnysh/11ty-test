@@ -18,5 +18,18 @@
     </main>
         {% include "footer.njk" %}
     <script>{% include "src/utils/search.js" %}</script>
+    <!-- Include Netlify Identity for authentication -->
+  <script async src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
 </body>
 </html>
