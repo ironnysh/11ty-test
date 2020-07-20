@@ -9,3 +9,5 @@ tags:
   - ברלין
 ---
 טקסט הפוסט
+
+![](/src/assets/images/uploads/contact.jpg)
