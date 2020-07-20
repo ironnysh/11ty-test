@@ -8,3 +8,5 @@ tags:
   - מסעדות
 ---
 כל מיני מילים
+
+![telephone](/src/assets/images/uploads/contact.jpg "טלפון כתום")
