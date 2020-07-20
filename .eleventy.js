@@ -82,7 +82,8 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addLayoutAlias("thoughts", "layouts/thoughts.njk");
 
   // Pass-through Files
-  eleventyConfig.addPassthroughCopy("src/assets")
+  eleventyConfig.addPassthroughCopy("src/assets");
+  eleventyConfig.addPassthroughCopy("admin");
 
   // Base eleventyConfig
   return {
