@@ -6,15 +6,16 @@ backend:
 publish_mode: editorial_workflow
 
 # This line should *not* be indented
-media_folder: "/src/assets/images/uploads" # Media files will be stored in the repo under assets/images/uploads
+media_folder: "/assets/images/uploads" # Media files will be stored in the repo under assets/images/uploads
 
 site_url: https://upbeat-lamport-7e18bb.netlify.app
 display_url: https://upbeat-lamport-7e18bb.netlify.app
 logo_url: https://your-site.com/assets/images/logo.png
 
 collections:
+  # Longform, e.g. Thoughts
   - name: "thoughts" # Used in routes, e.g., /admin/collections/blog
-    label: "Thoughts" # Used in the UI
+    label: "Thought" # Used in the UI
     folder: "/src/thoughts/" # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
     slug: "{{fields.slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
@@ -24,13 +25,25 @@ collections:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Description", name: "summary", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Tags", name: "tags", widget: "select", multiple: true, min: 1, max: 3, options: {label: "Chicago", value: "ORD"},{label: "Paris", value: "CDG"},{label: "Tokyo", value: "HND"}}
       - {label: "Draft", name: "draft", widget: "boolean", default: true}
       - {label: "Content", name: "body", widget: "markdown"}
-      - {label: "Tags",
-        name: "tags",
-        widget: "select",
-        multiple: true,
-        min: 1,
-        max: 3,
-        options: ["נסיעות", "מסעדות", "ברלין"]}
+      - comment: 'This is a multiline\ncomment'
     
+  # General pages e.g. About
+  - name: "pages"
+    label: "Page"
+    folder: "/src/"
+    create: false # Change to true to allow editors to create new pages
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Permalink", name: "permalink", widget: "string" }
+      - label: "Navigation" # https://www.11ty.dev/docs/plugins/navigation/
+        name: "eleventyNavigation"
+        widget: "object"
+        fields:
+          - { label: "Key", name: "key", widget: "string" }
+          - { label: "Order", name: "order", widget: "number", default: 0 }
+      - { label: "Body", name: "body", widget: "markdown" }
