@@ -3,7 +3,7 @@
 slug: mondayblues
 title: יום שני האפור
 summary: "גשם זלעפות ושיטוט ברחובות "
-date: 2020-07-20T19:24:41.004Z
+date: 2020-05-11T19:24:41.004Z
 tags:
   - ORD
 draft: true
