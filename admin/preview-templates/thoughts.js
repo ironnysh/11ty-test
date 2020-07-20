@@ -36,4 +36,4 @@ const Post = createClass({
   },
 });
 
-export default Post;
+export default Thoughts;
