@@ -1,5 +1,5 @@
 ---
-slug: post-test
+slug: cms-test
 title: כותרת
 summary: תיאור הפוסט
 date: 2020-07-20T15:08:56.741Z
