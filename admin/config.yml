@@ -30,6 +30,8 @@ collections:
       - {label: "Content", name: "body", widget: "markdown"}
     
   # General pages e.g. About
+  - name: "pages"
+    label: "Pages"
     files:
       - file: "/src/about.md"
         label: "About"
