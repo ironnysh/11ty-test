@@ -6,11 +6,11 @@ backend:
 publish_mode: editorial_workflow
 
 # This line should *not* be indented
-media_folder: "/assets/images/uploads" # Media files will be stored in the repo under assets/images/uploads
+media_folder: "assets/images/uploads" # Media files will be stored in the repo under assets/images/uploads
 
 site_url: https://upbeat-lamport-7e18bb.netlify.app
 display_url: https://upbeat-lamport-7e18bb.netlify.app
-logo_url: https://your-site.com/assets/images/logo.png
+logo_url: https://upbeat-lamport-7e18bb.netlify.app/assets/images/logo.png
 
 collections:
   # Longform, e.g. Thoughts
@@ -31,17 +31,18 @@ collections:
     
   # General pages e.g. About
   - name: "pages"
-    label: "Pages"
-    files:
-      - file: "/src/about.md"
-        label: "About"
-        name: "about"
+    label: "Page"
+    folder: "/src/"
+    create: false # Change to true to allow editors to create new pages
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Permalink", name: "permalink", widget: "string" }
+      - label: "Navigation" # https://www.11ty.dev/docs/plugins/navigation/
+        name: "eleventyNavigation"
+        widget: "object"
         fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Permalink", name: "permalink", widget: "string" }
-          - label: "Navigation" # https://www.11ty.dev/docs/plugins/navigation/
-          name: "eleventyNavigation"
-          widget: "object"
-          fields:
-           - { label: "Key", name: "key", widget: "string" }
-           - { label: "Body", name: "body", widget: "markdown" }
+          - { label: "Key", name: "key", widget: "string" }
+          - { label: "Order", name: "order", widget: "number", default: 0 }
+      - { label: "Body", name: "body", widget: "markdown" }
