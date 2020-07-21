@@ -1,16 +1,14 @@
 backend:
-  name: git-gateway
-  branch: master # Branch to update (optional; defaults to master)
-  
+  name: github
+  repo: ironnysh/11ty-test
+  branch: master
+  base_url: http://11ty-test.now.sh/
+  auth_endpoint: api/begin
 # This line should *not* be indented
 publish_mode: editorial_workflow
 
 # This line should *not* be indented
 media_folder: "assets/images/uploads" # Media files will be stored in the repo under assets/images/uploads
-
-site_url: https://upbeat-lamport-7e18bb.netlify.app
-display_url: https://upbeat-lamport-7e18bb.netlify.app
-logo_url: https://upbeat-lamport-7e18bb.netlify.app/assets/images/logo.png
 
 collections:
   # Longform, e.g. Thoughts
