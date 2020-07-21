@@ -1,0 +1,39 @@
+backend:
+  name: git-gateway
+
+
+
+
+site_url: https://upbeat-lamport-7e18bb.netlify.app
+display_url: https://upbeat-lamport-7e18bb.netlify.app
+logo_url: https://upbeat-lamport-7e18bb.netlify.app/assets/images/logo.png
+
+
+collections: # A list of collections the CMS should be able to edit
+  - name: "pages"
+    label: "Pages"
+    files:
+      - label: "About"
+        name: "about"
+        file: "/src/about.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Permalink", name: "permalink", widget: "string" }
+          - label: "Navigation" # https://www.11ty.dev/docs/plugins/navigation/
+          name: "eleventyNavigation"
+          widget: "object"
+          fields:
+           - { label: "Key", name: "key", widget: "string" }
+           - { label: "Body", name: "body", widget: "markdown" }
+      - label: "404"
+        name: "404"
+        file: "/src/404.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Permalink", name: "permalink", widget: "string" }
+          - label: "Navigation" # https://www.11ty.dev/docs/plugins/navigation/
+          name: "eleventyNavigation"
+          widget: "object"
+          fields:
+           - { label: "Key", name: "key", widget: "string" }
+           - { label: "Body", name: "body", widget: "markdown" }
