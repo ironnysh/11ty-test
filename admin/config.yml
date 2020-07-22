@@ -55,6 +55,6 @@ collections:
             name: "social"
             widget: "list"
             fields: 
-              - { label: "twitter", name: "url", widget: "string" }
-              - { label: "facebook", name: "url", widget: "string" }
-              - { label: "flickr", name: "url", widget: "string" }
+              - { label: "Twitter", name: "twitter", widget: "string" }
+              - { label: "Facebook", name: "facebook", widget: "string" }
+              - { label: "Flickr", name: "flickr", widget: "string" }
