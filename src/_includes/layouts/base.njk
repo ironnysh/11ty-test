@@ -8,8 +8,9 @@
   <meta name="description" content="{{ description }}">
   <link rel="icon" href="/assets/images/favicon.png" type="image/png" />
   <link rel="alternate" href="{{ meta.feedUrl }}" title="{{ meta.title }}" type="application/rss+xml" >
-    <link rel="alternate" href="{{ meta.jsonFeedUrl }}" title="{{ meta.title }}" type="application/json" >
-
+  <link rel="alternate" href="{{ meta.jsonFeedUrl }}" title="{{ meta.title }}" type="application/json" >
+    <!-- Include Netlify Identity for authentication -->
+  <script async src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
         {% include "header.njk" %}
@@ -18,8 +19,6 @@
     </main>
         {% include "footer.njk" %}
     <script>{% include "src/utils/search.js" %}</script>
-    <!-- Include Netlify Identity for authentication -->
-  <script async src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <script>
   if (window.netlifyIdentity) {
     window.netlifyIdentity.on("init", user => {
