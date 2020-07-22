@@ -1,8 +1,10 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: ironnysh/11ty-test
   branch: master
-  site_domain: https://11ty-test.ironnysh.vercel.app/
-
+  base_url: https://11ty-test.ironnysh.vercel.app/
+  auth_endpoint: api/begin
+  
 # This line should *not* be indented
 publish_mode: editorial_workflow
 
