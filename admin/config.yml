@@ -27,19 +27,34 @@ collections:
       - {label: "Content", name: "body", widget: "markdown"}
     
   # General pages e.g. About
-  - name: "pages"
-    label: "Page"
-    folder: "/src/"
-    create: false # Change to true to allow editors to create new pages
-    slug: "{{slug}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Publish Date", name: "date", widget: "datetime" }
-      - { label: "Permalink", name: "permalink", widget: "string" }
-      - label: "Navigation" # https://www.11ty.dev/docs/plugins/navigation/
-        name: "eleventyNavigation"
-        widget: "object"
+  - label: "Pages"
+    name: "pages"
+    files:
+      - label: "About"
+        name: "about"
+        file: "src/about.md"
         fields:
-          - { label: "Key", name: "key", widget: "string" }
-          - { label: "Order", name: "order", widget: "number", default: 0 }
-      - { label: "Body", name: "body", widget: "markdown" }
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "About summary", name: "about", widget: "text"}
+          - { label: "Permalink", name: "permalink", widget: "hidden" }
+          - label: "Navigation" # https://www.11ty.dev/docs/plugins/navigation/
+            name: "eleventyNavigation"
+            widget: "object"
+            fields:
+              - { label: "Key", name: "key", widget: "string" }
+              - { label: "Order", name: "order", widget: "number", default: 0 }
+          - { label: "Body", name: "body", widget: "markdown" }
+
+      - label: "Site Settings"
+        name: "settings"
+        file: "_data/meta.json"
+        fields:
+          - {label: "Site Name", name: "title", widget: "string"}
+          - {label: "Tagline", name: "description", widget: "string", required: false, hint: "Keep it short" }
+          - label: "Social Networks"
+            name: "social"
+            widget: "list"
+            fields: 
+              - { label: "twitter", name: "url", widget: "string" }
+              - { label: "facebook", name: "url", widget: "string" }
+              - { label: "flickr", name: "url", widget: "string" }
