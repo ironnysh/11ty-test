@@ -84,6 +84,7 @@ module.exports = function (eleventyConfig) {
   // Pass-through Files
   eleventyConfig.addPassthroughCopy("src/assets");
   eleventyConfig.addPassthroughCopy("admin");
+  eleventyConfig.addPassthroughCopy("public");
 
   // Base eleventyConfig
   return {
