@@ -101,10 +101,10 @@ module.exports = function (eleventyConfig) {
   // Base eleventyConfig
   return {
     dir: {
-      input: "src",
+        input: "src",
     },
     templateFormats: ["njk", "md", "html"],
-    htmlTemplateEngine: "njk",
+  htmlTemplateEngine: "njk",
     markdownTemplateEngine: "njk",
     passthroughFileCopy: "true"
   }
