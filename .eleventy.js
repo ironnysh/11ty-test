@@ -36,6 +36,18 @@ module.exports = function (eleventyConfig) {
   // Filters
   eleventyConfig.addFilter("squash", require("./src/utils/squash.js"));
 
+  eleventyConfig.addFilter("randomPost", (arr) => {
+    if (Array.isArray(arr)) {
+      const random = arr[Math.floor(Math.random() * arr.length)];
+      return [random];
+    }
+    return [];
+  });
+	
+    // limit filter
+  eleventyConfig.addFilter("limit", function (array, limit) {
+    return array.slice(0, limit);
+  });
 
   // Dates
   eleventyConfig.addFilter("shortDate", function (date) {
