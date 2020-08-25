@@ -1,0 +1,43 @@
+---
+layout: base
+---
+{% macro random(posts) %}
+    <ul>
+        {% for post in collections.posts %}
+            <ul><a href="{{ post.url }}"><li>{{ post.data.title }}</li></ul>
+        {% endfor %}
+    </ul>
+{% endmacro %}
+
+{% set randomPosts = [] %}
+{% for item in search %}
+    {% set randomPosts = (randomPosts.push({title: search.title, url: search.url}), randomPosts) %}
+{% endfor %}
+{{ random(items=randomPosts) }}
+
+<script type="text/javascript">
+    var postsHREF = [{% for post in collections.posts %}"{{ post.url }}"{% if not loop.last %},{% endif %}{% endfor %}];
+    var postsTitle = [{% for post in collections.posts %}"{{ post.data.title }}"{% if not loop.last %},{% endif %}{% endfor %}];
+</script>
+
+<script type = "text/javascript" >
+var randomPostsUsed = [];
+/*var postTitle = search.title;
+var postHREF = search.url;*/
+var counter = 0;
+var numberOfPosts = 3;
+while (counter < numberOfPosts) {
+	var randomPosts;
+	var postHREF;
+	var postTitle;
+	randomPosts = Math.floor(Math.random() * postsHREF.length);
+	if (randomPostsUsed.indexOf(randomPosts) == "-1") {
+		postHREF = postsHREF[randomPosts];
+		postTitle = postsTitle[randomPosts];
+        {
+			document.write('<ul><li></li><a href="' + postHREF + '">' + postTitle + '</a></li></ul>');
+		}
+		randomPostsUsed.push(randomPosts);
+		counter++;
+	}
+} </script>

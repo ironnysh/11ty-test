@@ -1,5 +1,5 @@
 ---
-title: Delaying the NProgress indicator in Phoenix LiveView
+title: NProgress indicator in Phoenix LiveView
 tags:
   - Elixir
   - Phoenix LiveView

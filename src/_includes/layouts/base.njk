@@ -11,13 +11,7 @@
   <link rel="alternate" href="{{ meta.jsonFeedUrl }}" title="{{ meta.title }}" type="application/json" >
   <!-- Include Netlify Identity for authentication -->
   <script async src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  <script type="text/javascript">
-
-    var postsHREF = [{% for post in collections.posts %}"{{ post.url }}",{% endfor %}];
-
-    var postsTitle = [{% for post in collections.posts %}"{{ post.data.title }}",{% endfor %}];
-
-</script>
+  
 </head>
 <body>
         {% include "header.njk" %}
