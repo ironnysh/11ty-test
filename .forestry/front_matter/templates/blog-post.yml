@@ -16,5 +16,3 @@ fields:
     schema:
       format: markdown
   label: Content
-pages:
-- posts/my-heading.md
