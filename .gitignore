@@ -4,5 +4,5 @@ _site
 package-lock.json
 GG-Docs
 .env
-
+yarn.lock
 .vercel
